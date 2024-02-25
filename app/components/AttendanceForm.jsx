@@ -12,7 +12,6 @@ export const AttendanceForm = () => {
 
    console.log("loggin session from Attendance Form:", session)
 
-
    const [students, setStudents] = useState([])
    const [attendance, setAttendance] = useState([])
 
@@ -71,23 +70,23 @@ export const AttendanceForm = () => {
 
   return (
     <form onSubmit={handleSubmitAttendance}>
-        <table className="mx-auto mt-10">
-        <thead>
-            <tr className="font-semibold text-gray-800 bg-gray-200">
-            <td className="py-2 px-8">Count</td>
-            <td className="py-2 px-8">Student</td>
-            <td className="py-2 px-8">Attendance</td>
-            <td className="py-2 px-8">Duration</td>
-            <td className="py-2 px-8">Status</td>
-            </tr>
-        </thead>
-        <tbody>
-            {students && students.map((student, index) => (
-                <StudentRow key={index} student={student} index={index} setAttendance={setAttendance} />
-            ))}
-        </tbody>
+        <table className="mx-auto">
+            <thead>
+                <tr className="font-semibold text-gray-600 bg-gray-300 text-center">
+                    <td className="py-2 px-3 sm:px-6 hidden md:block text-center">Count</td>
+                    <td className="py-2 px-3 sm:px-6 text-center">Student</td>
+                    <td className="py-2 px-3 sm:px-6 text-center">Attendance</td>
+                    <td className="py-2 px-3 sm:px-6 hidden md:block text-center">Duration</td>
+                    <td className="py-2 px-3 sm:px-6 text-center">Status</td>
+                </tr>
+            </thead>
+            <tbody>
+                {students && students.map((student, index) => (
+                    <StudentRow key={index} student={student} index={index} setAttendance={setAttendance} />
+                ))}
+            </tbody>
         </table>
-        <button type="submit" className="mx-auto bg-green-500">Submit</button>
+        <button type="submit" className="submit-btn">Submit Attendance</button>
     </form>
   )
 }

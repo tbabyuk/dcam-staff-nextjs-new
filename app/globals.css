@@ -15,3 +15,15 @@
     opacity: 1; /* End with opacity 1 */
   }
 }
+
+.page-container {
+  @apply p-24
+}
+
+.sign-in-btn {
+  @apply py-5 px-10 bg-[#4aad52] hover:bg-[#3a8841] text-gray-100 text-lg rounded-md 
+}
+
+.submit-btn {
+  @apply block mx-auto mt-8 bg-[#4aad52] hover:bg-[#3a8841] text-gray-100 py-2 px-3 rounded-md
+}

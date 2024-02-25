@@ -17,12 +17,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
           <Provider>
-            <Sidebar />
-            <div className="ml-[52px]">
-              <Navbar />
-              <Subheader />
-                {children}
-            </div>
+            {children}
           </Provider>
       </body>
     </html>

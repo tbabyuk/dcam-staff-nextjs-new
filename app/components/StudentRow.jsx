@@ -35,18 +35,18 @@ export const StudentRow = ({student, index, setAttendance}) => {
     
 
   return (
-    <tr className="text-center bg-gray-100">
-        <td className="py-2">{index + 1}</td>
-        <td className="text-left">{student.name}</td>
+    <tr className="text-center bg-gray-100 h-6 even:bg-gray-200">
+        <td className="py-2 px-3 hidden md:block">{index + 1}</td>
+        <td className="py-2 px-3 text-left">{student.name}</td>
         <td>
-            <select defaultValue={"attendance"} onChange={(e) => handleSelect(e)} className="cursor-pointer">
+            <select defaultValue={"attendance"} onChange={(e) => handleSelect(e)} className="cursor-pointer px-2 py-1 border rounded-md">
                 <option value="attendance">attendance</option>
                 <option value="present">present</option>
                 <option value="absent">absent</option>
-                <option value="counted">absent (late notice)</option>
+                <option value="counted">absent (late)</option>
             </select>
         </td>
-        <td>{student.duration}</td>
+        <td className="hidden md:block py-2 px-3">{student.duration}</td>
         <td>{setIcon()}</td>
     </tr>
   )

@@ -21,18 +21,6 @@ export const Sidebar = () => {
                 <li>
                     <Link href="/documents" className="flex ps-3 cursor-pointer"><HiOutlineDocumentText size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">My Docs</span>)}</Link>
                 </li>
-                <li>
-                    <Link href="/create-user" className="flex ps-3 cursor-pointer"><HiOutlineDocumentText size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">Create User</span>)}</Link>
-                </li>
-                <li>
-                    <Link href="/client-member" className="flex ps-3 cursor-pointer"><HiOutlineDocumentText size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">Client Member</span>)}</Link>
-                </li>
-                <li>
-                    <Link href="/member" className="flex ps-3 cursor-pointer"><HiOutlineDocumentText size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">Member</span>)}</Link>
-                </li>
-                <li>
-                    <Link href="/public" className="flex ps-3 cursor-pointer"><HiOutlineDocumentText size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">Public</span>)}</Link>
-                </li>
             </ul>
         </div>
     )
