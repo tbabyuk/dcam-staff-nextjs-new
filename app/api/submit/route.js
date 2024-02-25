@@ -4,16 +4,16 @@ import { Student } from "@/models/StudentSchema";
 export const POST = async (request) => {
     
 
-    const {attendance} = await request.json()
+    const {attendance, teacher} = await request.json()
 
-    console.log("logging request from API:", attendance)
+    console.log("logging request from API:", attendance, teacher)
 
 
     try {
         await connectToDB();
 
         attendance.forEach( async (student) => {
-            await Student.updateOne({"teacher": "raul", "name": `${student.name}`}, 
+            await Student.updateOne({"teacher": teacher, "name": `${student.name}`}, 
                                 {$set: {"attendance.week1": `${student.week1}`}})
 
         })

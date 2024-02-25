@@ -2,14 +2,21 @@
 
 import { useState, useEffect } from "react"
 import { StudentRow } from "../components/StudentRow"
+import { useSession } from "next-auth/react"
 
 
 export const AttendanceForm = () => {
+
+   const session = useSession()
+
+
+   console.log("loggin session from Attendance Form:", session)
 
 
    const [students, setStudents] = useState([])
    const [attendance, setAttendance] = useState([])
 
+   
    const handleSubmitAttendance = async (e) => {
         e.preventDefault()
         console.log("submitting...", attendance)
@@ -21,7 +28,7 @@ export const AttendanceForm = () => {
                 headers: {
                     "Content-Type": "application/"
                 },
-                body: JSON.stringify({attendance})
+                body: JSON.stringify({attendance, teacher: "taisiya"})
             })
             console.log("Response received:", res)
         } catch (error) {
@@ -37,16 +44,28 @@ export const AttendanceForm = () => {
    useEffect(() => {
 
       const fetchStudents = async () => {
-        try {
-            const res = await fetch("/api/get-students")
-            const data = await res.json()
-            setStudents([...data])
-        } catch (error) {
-            console.log("Error fetching students:", error)
+        
+        if(!session) return
+
+        if(session) {
+            try {
+                const res = await fetch("/api/get-students", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/"
+                    },
+                    body: JSON.stringify({teacher: session.data.user.name})
+                })
+                const data = await res.json()
+                setStudents([...data])
+            } catch (error) {
+                console.log("Error fetching students:", error)
+            }
         }
       }
       fetchStudents()
-   }, [])
+
+   }, [session])
 
 
 

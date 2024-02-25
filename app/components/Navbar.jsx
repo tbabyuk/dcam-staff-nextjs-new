@@ -7,14 +7,10 @@ export const Navbar = async () => {
     const session = await auth()
 
 
-    if(session) {
-      console.log("user image is:", session.user.image)
-    }
-
     console.log("logging session from Navar:", session)
     return (
       <nav className="px-4 h-[53px] bg-[#375681] text-gray-100 flex justify-between items-center border-b-2 border-gray-200">
-        <img src="https://lh3.googleusercontent.com/a/ACg8ocK6fltGNCJTN15J2RodnXxHdKjRCnYoxOQ2igG0_IGwIcQ=s96-c.jpg" className="h-[30px]" />
+        <img src="/dcam-logo-white-long.png" className="h-[30px]" />
         <div className="flex gap-4">
           {session?.user && (<span className="flex items-center">Hello, {session.user.name}</span>)}
           <img src="/avatar1.jpg" className="h-[34px] rounded-full" />

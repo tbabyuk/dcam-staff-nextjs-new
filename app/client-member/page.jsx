@@ -5,11 +5,12 @@ import { useSession } from "next-auth/react"
 
 const ClientMemberPage = () => {
   
-  const {status} = useSession()
 
-  console.log("logging session from client component ClientMemberPage", status)
+  const session = useSession()
 
-  if(status === "authenticated") {
+  console.log("logging session from client component ClientMemberPage", session.status)
+
+  if(session.status === "authenticated") {
     return (
       <h1 className="text-2xl font-semibold text-center">Client Member Session</h1>
     )
