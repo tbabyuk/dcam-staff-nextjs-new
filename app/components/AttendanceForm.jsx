@@ -10,10 +10,26 @@ export const AttendanceForm = () => {
    const [students, setStudents] = useState([])
    const [attendance, setAttendance] = useState([])
 
-   const handleSubmitAttendance = (e) => {
+   const handleSubmitAttendance = async (e) => {
         e.preventDefault()
         console.log("submitting...", attendance)
+        // send attendance data to API
+
+        try {
+            const res = await fetch("/api/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/"
+                },
+                body: JSON.stringify({attendance})
+            })
+            console.log("Response received:", res)
+        } catch (error) {
+            console.log("Error with post request:", error)
+        }
    }
+
+
 
    console.log("Logging attendance from Form:", attendance)
 
@@ -52,7 +68,7 @@ export const AttendanceForm = () => {
             ))}
         </tbody>
         </table>
-        <button type="submit">Submit</button>
+        <button type="submit" className="mx-auto bg-green-500">Submit</button>
     </form>
   )
 }

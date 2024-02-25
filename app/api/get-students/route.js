@@ -7,7 +7,7 @@ export const GET = async (request) => {
 
     try {
         await connectToDB()
-        const students = await Student.find({})
+        const students = await Student.find({"teacher": "raul"})
 
         return new Response(JSON.stringify(students), {status: 200})
     } catch (error) {

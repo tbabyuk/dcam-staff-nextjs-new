@@ -13,8 +13,8 @@ export const StudentRow = ({student, index, setAttendance}) => {
     setAttendanceStatus(e.target.value)
 
     const attendanceObject = {
-        firstName: student.firstName,
-        attendance: e.target.value
+        name: student.name,
+        week1: e.target.value
     }
     setAttendance((prev) => [...prev, attendanceObject])
   }
@@ -37,7 +37,7 @@ export const StudentRow = ({student, index, setAttendance}) => {
   return (
     <tr className="text-center bg-gray-100">
         <td className="py-2">{index + 1}</td>
-        <td className="text-left">{student.firstName}</td>
+        <td className="text-left">{student.name}</td>
         <td>
             <select defaultValue={"attendance"} onChange={(e) => handleSelect(e)} className="cursor-pointer">
                 <option value="attendance">attendance</option>

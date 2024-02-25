@@ -1,15 +1,15 @@
 import {Schema, model, models} from "mongoose"
 
 const StudentSchema = new Schema({
-    // attendance: {
-    //     type: Object,
-    //     required: true
-    // },
+    attendance: {
+        type: Object,
+        required: true
+    },
     duration: {
         type: Number,
         required: true
     },
-    firstName: {
+    name: {
         type: String,
         required: true
     },
