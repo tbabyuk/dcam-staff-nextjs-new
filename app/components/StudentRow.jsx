@@ -14,7 +14,7 @@ export const StudentRow = ({student, index, setAttendance}) => {
 
     const attendanceObject = {
         name: student.name,
-        week1: e.target.value
+        status: e.target.value
     }
     setAttendance((prev) => [...prev, attendanceObject])
   }

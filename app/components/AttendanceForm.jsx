@@ -2,13 +2,15 @@
 
 import { useState, useEffect } from "react"
 import { StudentRow } from "../components/StudentRow"
-
-
+import { usePathname } from "next/navigation"
+// import { useRouter } from "next/navigation"
 
 export const AttendanceForm = ({students}) => {
 
 
    const [attendance, setAttendance] = useState([])
+   const path = usePathname()
+//    const router = useRouter()
 
 
    const handleSubmitAttendance = async (e) => {
@@ -22,13 +24,22 @@ export const AttendanceForm = ({students}) => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({attendance, teacher: "taisiya"})
+                body: JSON.stringify({attendance, teacher: "taisiya", week: path === "/attendance/week1" ? "week1Submitted" : "week2Submitted" })
             })
             const {message} = await res.json()
+
             if(message === "success") {
-                console.log("Week 1 Attendance submitted successfully! Redirecting to Week 2 attendance...")
-                setTimeout(() => {router.push("/attendance/week2")}, 2000)
+                location.reload()
             }
+
+
+            // if(path === "/attendance/week1" && message === "success") {
+            //     console.log("Week 1 Attendance submitted successfully! Redirecting to Week 2 attendance...")
+            //     setTimeout(() => {router.push("/attendance/week2")}, 2000)
+            // } else {
+            //     console.log("Week 2 Attendance submitted successfully!")
+            //     setTimeout(() => {router.push("/attendance/success")}, 2000)
+            // }
             } catch (error) {
                 console.log("Error with post request:", error)
             }
