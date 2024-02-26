@@ -7,6 +7,7 @@ const WelcomePage = async () => {
 
   console.log("logging session fromw elcome page:", session)
 
+
   return (
     <main className="page-container text-center">Welcome, {session?.user.name}! What would you like to do today?</main>
   )

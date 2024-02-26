@@ -1,4 +1,4 @@
-import { connectToDB } from "@/db/database";
+import { connectToStudentsDB } from "@/db/database";
 import { Student } from "@/models/StudentSchema";
 
 export const POST = async (request) => {
@@ -6,23 +6,21 @@ export const POST = async (request) => {
 
     const {attendance, teacher} = await request.json()
 
-    console.log("logging request from API:", attendance, teacher)
+    console.log("logging request from /submit API:", attendance, teacher)
 
 
     try {
-        await connectToDB();
+        await connectToStudentsDB();
 
         attendance.forEach( async (student) => {
             await Student.updateOne({"teacher": teacher, "name": `${student.name}`}, 
                                 {$set: {"attendance.week1": `${student.week1}`}})
 
         })
-
-        console.log("from API: update successful")
-
-        // return new Response(JSON.stringify(prompts), {status: 200})
+        console.log("from API: block fired")
+        return new Response(JSON.stringify({message: "success"}, {status: 200}))
     } catch (error) {
-        return new Response("Failed to fetch all prompts", {status: 500})
+        return new Response("Failed to submit attendance", {status: 500})
     }
 }
 

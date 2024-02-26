@@ -3,10 +3,9 @@ import {connect} from "mongoose"
 
 
 
-
 let isConnected = false;
 
-export const connectToDB = async () => {
+export const connectToStudentsDB = async () => {
     mongoose.set("strictQuery", true);
 
     if(isConnected) {
@@ -15,11 +14,10 @@ export const connectToDB = async () => {
     }
 
     try {
-        await connect(process.env.MONGODB_URI, {
-        })
+        await connect(process.env.MONGODB_URI)
 
         isConnected = true;
-        console.log("MongoDB connected!!!---")
+        console.log("Connection established to dcam_students collection")
     } catch (error) {
         console.log(error)
     }

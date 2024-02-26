@@ -16,7 +16,7 @@ export const Sidebar = () => {
                     <Link href="/" className="flex justify-center py-2 mb-14 border-b-2 border-gray-200"><img src="/dcam-logo-white.png" width="35px" /></Link>
                 </li>
                 <li>
-                    <Link href="/attendance" className="flex ps-3 cursor-pointer mb-5"><HiOutlineClock size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">Log My Hours</span>)}</Link>
+                    <Link href="/attendance/week1" className="flex ps-3 cursor-pointer mb-5"><HiOutlineClock size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">Log My Hours</span>)}</Link>
                 </li>
                 <li>
                     <Link href="/documents" className="flex ps-3 cursor-pointer"><HiOutlineDocumentText size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">My Docs</span>)}</Link>

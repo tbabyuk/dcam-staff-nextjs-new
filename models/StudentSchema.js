@@ -1,5 +1,21 @@
 import {Schema, model, models} from "mongoose"
 
+
+const MetaSchema = new Schema({
+    teacher: {
+        type: String,
+        required: true
+    },
+    week1Submitted: {
+        type: Boolean,
+        required: true
+    },
+    week2Submitted: {
+        type: Boolean,
+        required: true
+    }
+})
+
 const StudentSchema = new Schema({
     attendance: {
         type: Object,
@@ -33,3 +49,4 @@ const StudentSchema = new Schema({
 
 
 export const Student = models.Student || model("Student", StudentSchema)
+export const Meta = models.Meta || model("Meta", MetaSchema)
