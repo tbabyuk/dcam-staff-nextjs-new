@@ -27,7 +27,7 @@ const WeekTwoAttendancePage = () => {
               headers: {
                   "Content-Type": "application/json"
               },
-              body: JSON.stringify({teacher: session.data.user.name})
+              body: JSON.stringify({teacher: session.data.user.name.toLowerCase()})
           })
               const data = await res.json()
               setStudents([...data])
@@ -44,11 +44,9 @@ const WeekTwoAttendancePage = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({teacher: session.data.user.name})
+            body: JSON.stringify({teacher: session.data.user.name.toLowerCase()})
         })
             const result = await res.json()
-
-            console.log("loggin result from front end checkWeekMeta:", result)
 
             if(result[0].week1Submitted && result[0].week2Submitted) {
                 router.push("/attendance/completed")

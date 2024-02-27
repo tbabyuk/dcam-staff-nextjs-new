@@ -6,12 +6,10 @@ import { useSession } from "next-auth/react"
 import { useRouter } from "next/navigation"
 
 
-
 const WeekOneAttendancePage = () => {
 
-
-  const session = useSession()
   const router = useRouter()
+  const session = useSession()
   const [students, setStudents] = useState([])
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
@@ -28,7 +26,7 @@ const WeekOneAttendancePage = () => {
               headers: {
                   "Content-Type": "application/json"
               },
-              body: JSON.stringify({teacher: session.data.user.name})
+              body: JSON.stringify({teacher: session.data.user.name.toLowerCase()})
           })
               const data = await res.json()
               setStudents([...data])
@@ -46,11 +44,9 @@ const WeekOneAttendancePage = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({teacher: session.data.user.name})
+            body: JSON.stringify({teacher: session.data.user.name.toLowerCase()})
         })
             const result = await res.json()
-
-            console.log("loggin result from front end checkWeekMeta:", result)
 
             if(result[0].week1Submitted && result[0].week2Submitted) {
                 router.push("/attendance/completed")
@@ -60,9 +56,7 @@ const WeekOneAttendancePage = () => {
                 setTimeout(() => {router.push("/attendance/week2")}, 3000)
                 return;
             }
-
             fetchStudents()
-
 
         } catch (error) {
             console.log("Error fetching meta data:", error)

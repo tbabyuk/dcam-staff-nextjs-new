@@ -1,37 +1,38 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { StudentRow } from "../components/StudentRow"
 import { usePathname } from "next/navigation"
-// import { useRouter } from "next/navigation"
+import { useSession } from "next-auth/react"
+
+
 
 export const AttendanceForm = ({students}) => {
 
 
    const [attendance, setAttendance] = useState([])
    const path = usePathname()
-//    const router = useRouter()
+   const session = useSession()
 
 
    const handleSubmitAttendance = async (e) => {
         e.preventDefault()
-        console.log("submitting...", attendance)
-        // send attendance data to API
+        console.log("submitting this attendance:", attendance)
 
+        // send attendance data to API
         try {
             const res = await fetch("/api/submit", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({attendance, teacher: "taisiya", week: path === "/attendance/week1" ? "week1Submitted" : "week2Submitted" })
+                body: JSON.stringify({attendance, teacher: session.data.user.name.toLowerCase(), week: path === "/attendance/week1" ? "week1Submitted" : "week2Submitted" })
             })
             const {message} = await res.json()
 
             if(message === "success") {
                 location.reload()
             }
-
 
             // if(path === "/attendance/week1" && message === "success") {
             //     console.log("Week 1 Attendance submitted successfully! Redirecting to Week 2 attendance...")
@@ -44,9 +45,6 @@ export const AttendanceForm = ({students}) => {
                 console.log("Error with post request:", error)
             }
    }
-
-
-   console.log("Logging attendance from Form:", attendance)
 
 
 

@@ -17,7 +17,5 @@ export const usePayday = () => {
     year: "numeric"
   })
 
-  console.log(closestPaydayFormatted)
-
   return {closestPaydayFormatted}
 }

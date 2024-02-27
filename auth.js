@@ -1,6 +1,6 @@
 import { NextAuthConfig } from "next-auth";
 import NextAuth from "next-auth";
-import Google from "next-auth/providers/google"
+// import Google from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 
@@ -20,18 +20,18 @@ const credentialsConfig = CredentialsProvider({
     async authorize(credentials) {
         if(credentials.email === "taisiya.sarkisova@mail.ru" && credentials.password === "voice7975")
             return {
-                name: "taisiya",
+                name: "Taisiya",
         };
         if(credentials.email === "raulitoapcu@yahoo.com" && credentials.password === "drums9613")
             return {
-                name: "raul",
+                name: "Raul",
         };
         else return null;
     }
 })
 
 const config = {
-    providers: [Google, credentialsConfig]
+    providers: [credentialsConfig]
 }
 
 export const {handlers, auth, signIn, signOut} = NextAuth(config)

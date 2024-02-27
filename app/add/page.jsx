@@ -39,13 +39,10 @@ const AddStudentPage = async () => {
             await Student.updateMany(filter, {$set: {payday: "Thursday"}})
             console.log("update successful")
         } catch (error) {
-            console.log("error updaeting doc:", error)
+            console.log("error updating doc:", error)
         }
 
     }
-
-
-
 
     updateTaisiyaAttendance()
 

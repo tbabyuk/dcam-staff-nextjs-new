@@ -5,10 +5,7 @@ import { useSession } from "next-auth/react"
 
 const ClientMemberPage = () => {
   
-
   const session = useSession()
-
-  console.log("logging session from client component ClientMemberPage", session.status)
 
   if(session.status === "authenticated") {
     return (
