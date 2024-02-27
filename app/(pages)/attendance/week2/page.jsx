@@ -19,6 +19,11 @@ const WeekTwoAttendancePage = () => {
 
   useEffect(() => {
 
+    if(session.status === "unauthenticated") {
+        router.push("/")
+        return;
+    }
+
     const fetchStudents = async () => {
         
       try {

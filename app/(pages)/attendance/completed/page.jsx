@@ -18,6 +18,10 @@ const CompletedPage = () => {
 
   useEffect(() => {
 
+  if(session.status === "unauthenticated") {
+    router.push("/")
+    return;
+  }
 
   const getPayTotal = async () => {
     try {
@@ -66,8 +70,9 @@ const CompletedPage = () => {
 
     checkAttendanceStatus()
 
-
   }, [session])
+
+  
 
   return (
     <main className="page-container">
