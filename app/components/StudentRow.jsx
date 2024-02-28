@@ -5,16 +5,36 @@ import { useState } from "react"
 
 
 
-export const StudentRow = ({student, index, setAttendance}) => {
+export const StudentRow = ({student, index, setAttendance, setTotal}) => {
 
   const [attendanceStatus, setAttendanceStatus] = useState("")
+  const [attendanceSelected, setAttendanceSelected] = useState(false)
 
   const handleSelect = (e) => {
+
+    const value = e.target.value
+
+    // setTotal((prev) => {
+    //     return [...prev, {[student.name]: value}]
+    // })
+
+    if(!attendanceSelected && (value === "present" || value === "counted")) {
+      setAttendanceSelected(true)
+      setTotal((prev) => prev + student.pay)
+    }
+    if(attendanceSelected && value === "absent") {
+      setAttendanceSelected(false)
+      setTotal((prev) => prev - student.pay)
+    }
+    if(!attendanceSelected && value === "absent") {
+      setTotal((prev) => prev - 0)
+    }
+
     setAttendanceStatus(e.target.value)
 
     const attendanceObject = {
         name: student.name,
-        status: e.target.value
+        status: value
     }
     setAttendance((prev) => [...prev, attendanceObject])
   }
@@ -40,7 +60,7 @@ export const StudentRow = ({student, index, setAttendance}) => {
         <td className="py-2.5 px-3 text-left">{student.name}</td>
         <td className="py-2.5">
             <select defaultValue={"attendance"} onChange={(e) => handleSelect(e)} className="cursor-pointer px-2 py-1 border rounded-md">
-                <option value="attendance">attendance</option>
+                <option value="attendance" disabled>attendance</option>
                 <option value="present">present</option>
                 <option value="absent">absent</option>
                 <option value="counted">absent (late)</option>
