@@ -16,8 +16,6 @@ export const AttendanceForm = ({students}) => {
    const session = useSession()
 
 
-   console.log("logging total pay object from AttendanceForm:", total)
-
    const handleSubmitAttendance = async (e) => {
         e.preventDefault()
         console.log("submitting this attendance:", attendance)
@@ -51,7 +49,7 @@ export const AttendanceForm = ({students}) => {
 
 
   return (
-    <form onSubmit={handleSubmitAttendance}>
+    <form onSubmit={handleSubmitAttendance}>        
         <table className="mx-auto">
             <thead>
                 <tr className="font-semibold text-gray-600 bg-gray-300 text-center">
