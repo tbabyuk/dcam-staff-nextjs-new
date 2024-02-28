@@ -3,9 +3,9 @@ import { Meta } from "@/models/StudentSchema";
 
 export const POST = async (request) => {
     
-    const {teacher, week} = await request.json()
+    const {teacher} = await request.json()
 
-    console.log("logging teacher name from /check-meta API:", teacher, week)
+    console.log("logging teacher name from /check-meta API:", teacher)
 
     try {
         await connectToStudentsDB()

@@ -57,7 +57,7 @@ const WeekTwoAttendancePage = () => {
                 router.push("/attendance/completed")
                 return;
             } else if (!result[0].week1Submitted) {
-                setErrorMessage("Please submit Week 1 attendance first. Redirecting to week 1...")
+                setErrorMessage("Please submit Week 1 attendance first. Redirecting to Week 1...")
                 setTimeout(() => {router.push("/attendance/week1")}, 3000)
                 return;
             }

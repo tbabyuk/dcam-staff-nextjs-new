@@ -18,13 +18,37 @@ const credentialsConfig = CredentialsProvider({
         }
     },
     async authorize(credentials) {
-        if(credentials.email === "taisiya.sarkisova@mail.ru" && credentials.password === "voice7975")
+        if(credentials.email === process.env.AARON_EMAIL && credentials.password === process.env.AARON_PASS)
+            return {
+                name: "Aaron",
+        };
+        if(credentials.email === process.env.CHLOE_EMAIL && credentials.password === process.env.CHLOE_PASS)
+            return {
+                name: "Chloe",
+        };
+        if(credentials.email === process.env.GIANCARLO_EMAIL && credentials.password === process.env.GIANCARLO_PASS)
+            return {
+                name: "Giancarlo",
+        };
+        if(credentials.email === process.env.LINDA_EMAIL && credentials.password === process.env.LINDA_PASS)
+            return {
+                name: "Linda",
+        };
+        if(credentials.email === process.env.RAUL_EMAIL && credentials.password === process.env.RAUL_PASS)
+            return {
+                name: "Raul",
+        };
+        if(credentials.email === process.env.SENYA_EMAIL && credentials.password === process.env.SENYA_PASS)
+            return {
+                name: "Senya",
+        };
+        if(credentials.email === process.env.TAISIYA_EMAIL && credentials.password === process.env.TAISIYA_PASS)
             return {
                 name: "Taisiya",
         };
-        if(credentials.email === "raulitoapcu@yahoo.com" && credentials.password === "drums9613")
+        if(credentials.email === process.env.TIAGO_EMAIL && credentials.password === process.env.TIAGO_PASS)
             return {
-                name: "Raul",
+                name: "Tiago",
         };
         else return null;
     }
