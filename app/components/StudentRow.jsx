@@ -10,14 +10,12 @@ export const StudentRow = ({student, index, setAttendance, setTotal}) => {
   const [attendanceStatus, setAttendanceStatus] = useState("")
   const [attendanceSelected, setAttendanceSelected] = useState(false)
 
+
   const handleSelect = (e) => {
 
     const value = e.target.value
 
-    // setTotal((prev) => {
-    //     return [...prev, {[student.name]: value}]
-    // })
-
+    // Logic for displaying accumulated pay based on attendance value
     if(!attendanceSelected && (value === "present" || value === "counted")) {
       setAttendanceSelected(true)
       setTotal((prev) => prev + student.pay)
@@ -30,13 +28,11 @@ export const StudentRow = ({student, index, setAttendance, setTotal}) => {
       setTotal((prev) => prev - 0)
     }
 
+    // Used to display correct attendance icon to user
     setAttendanceStatus(e.target.value)
 
-    const attendanceObject = {
-        name: student.name,
-        status: value
-    }
-    setAttendance((prev) => [...prev, attendanceObject])
+    // Updates attendance for all students for the current week and saves data to an object
+    setAttendance((prev) => ({...prev, [student.name]: value}))
   }
 
   

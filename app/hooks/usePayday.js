@@ -53,7 +53,7 @@ export const usePayday = () => {
 
   useEffect(() => {
     getClosestPayday()
-  }, [closestPayday])
+  }, [])
 
   return {closestPayday, weekOneBoundaries, weekTwoBoundaries}
 }

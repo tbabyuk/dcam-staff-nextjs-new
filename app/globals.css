@@ -27,3 +27,7 @@
 .submit-btn {
   @apply block mx-auto mt-8 bg-[#4aad52] hover:bg-[#3a8841] text-gray-100 py-2 px-3 rounded-md
 }
+
+button:disabled {
+  @apply bg-gray-400 hover:bg-gray-400 cursor-not-allowed
+}

@@ -17,23 +17,57 @@ export const POST = async (request) => {
                   teacher: teacher,
                 }
             },
+
+
+            // $cond: {
+            //   if: {
+            //     $or: [
+            //       { $eq: ["$attendance.week1", "present"] },
+            //       { $eq: ["$attendance.week1", "counted"] }
+            //     ]
+            //   },
+            //   then: "$pay",
+            //   else: 0
+            // }
+
+
+
+
             {
                 $group: {
                   _id: null,
                   totalPayWeek1: {
                     $sum: {
-                      $cond: [{ $eq: ["$attendance.week1", "present"] }, "$pay", 0]
+                      // $cond: [{ $eq: ["$attendance.week1", "present"] }, "$pay", 0]
+                      $cond: {
+                        if: {
+                          $or: [
+                            { $eq: ["$attendance.week1", "present"] },
+                            { $eq: ["$attendance.week1", "counted"] }
+                          ]
+                        },
+                        then: "$pay",
+                        else: 0
+                      }
                     }
                   },
                   totalPayWeek2: {
                     $sum: {
-                      $cond: [{ $eq: ["$attendance.week2", "present"] }, "$pay", 0]
+                      // $cond: [{ $eq: ["$attendance.week2", "present"] }, "$pay", 0]
+                      $cond: {
+                        if: {
+                          $or: [
+                            { $eq: ["$attendance.week2", "present"] },
+                            { $eq: ["$attendance.week2", "counted"] }
+                          ]
+                        },
+                        then: "$pay",
+                        else: 0
+                      }
                     }
                   }
                 }
-            }
-
-                
+            }    
           ])
 
         const totalPay = result[0].totalPayWeek1 + result[0].totalPayWeek2

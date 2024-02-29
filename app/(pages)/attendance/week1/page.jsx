@@ -58,7 +58,7 @@ const WeekOneAttendancePage = () => {
                 return;
             } else if (result[0].week1Submitted) {
                 setErrorMessage("Week 1 attendance already submitted. Redirecting to week 2...")
-                setTimeout(() => {router.push("/attendance/week2")}, 3000)
+                setTimeout(() => {router.push("/attendance/week2")}, 1000)
                 return;
             }
             fetchStudents()

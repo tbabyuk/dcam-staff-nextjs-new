@@ -9,12 +9,13 @@ import { useSession } from "next-auth/react"
 
 export const AttendanceForm = ({students}) => {
 
-
-   const [attendance, setAttendance] = useState([])
+   const [attendance, setAttendance] = useState({})
    const [total, setTotal] = useState(0)
    const path = usePathname()
    const session = useSession()
 
+
+console.log("logging attendance object:", attendance)
 
    const handleSubmitAttendance = async (e) => {
         e.preventDefault()
@@ -67,7 +68,7 @@ export const AttendanceForm = ({students}) => {
             </tbody>
         </table>
         <p className="mt-4 text-center"><span className="font-semibold">Total: ${total?.toFixed(2)}</span></p>
-        <button type="submit" className="submit-btn">Submit Attendance</button>
+        <button type="submit" className="submit-btn" disabled={students.length !== Object.keys(attendance).length}>Submit Attendance</button>
     </form>
   )
 }
