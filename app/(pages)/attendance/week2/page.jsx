@@ -76,7 +76,7 @@ const WeekTwoAttendancePage = () => {
   }, [session])
 
   return (
-    <main className="px-4 md:px-24 pt-6 h-full">
+    <main className="md:px-24 pt-6 h-full">
         <p className="text-center mb-6">
             {successMessage && (<span className="text-green-500">{successMessage}</span>)}
             {errorMessage && (<span className="text-red-500">{errorMessage}</span>)}

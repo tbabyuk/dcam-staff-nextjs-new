@@ -18,7 +18,6 @@ export const POST = async (request) => {
                 }
             },
 
-
             // $cond: {
             //   if: {
             //     $or: [
@@ -29,9 +28,6 @@ export const POST = async (request) => {
             //   then: "$pay",
             //   else: 0
             // }
-
-
-
 
             {
                 $group: {
@@ -70,7 +66,10 @@ export const POST = async (request) => {
             }    
           ])
 
+
         const totalPay = result[0].totalPayWeek1 + result[0].totalPayWeek2
+
+        console.log("Logging totalPay from 'get-total' route:", totalPay)
 
         return new Response(JSON.stringify({totalPay}), {status: 200})
     } catch (error) {
