@@ -14,7 +14,8 @@ const MetaSchema = new Schema({
         type: Boolean,
         required: true
     }
-})
+},{timestamps: true})
+
 
 const StudentSchema = new Schema({
     attendance: {

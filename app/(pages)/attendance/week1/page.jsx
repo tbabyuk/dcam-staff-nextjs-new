@@ -73,6 +73,8 @@ const WeekOneAttendancePage = () => {
 
   }, [session])
 
+
+
   return (
     <main className="md:px-24 pt-6 h-full">
         <p className="text-center mb-6">
