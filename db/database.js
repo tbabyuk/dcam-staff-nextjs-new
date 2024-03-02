@@ -15,10 +15,9 @@ export const connectToStudentsDB = async () => {
 
     try {
         await connect(process.env.MONGODB_URI)
-
         isConnected = true;
         console.log("Connection established to dcam_students collection")
     } catch (error) {
-        console.log(error)
+        console.log("Error connecting to mongoDB:", error)
     }
 }

@@ -3,7 +3,8 @@
 import { SessionProvider } from "next-auth/react"
 
 
-const Provider = ({children}) => {
+
+export const AuthProvider = ({children}) => {
 
     return (
         <SessionProvider>
@@ -11,5 +12,3 @@ const Provider = ({children}) => {
         </SessionProvider>
     )
 }
-
-export default Provider;
