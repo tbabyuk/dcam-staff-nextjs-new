@@ -9,19 +9,16 @@ import { useRouter } from "next/navigation"
 const WeekOneAttendancePage = () => {
 
   const router = useRouter()
-//   const session = useSession()
+  const {data: session} = useSession()
   const [students, setStudents] = useState([])
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
 
 
 
-  useEffect(() => {
+  console.log("loggin session info from attendance/week1", session)
 
-    // if(session.status === "unauthenticated") {
-    //     router.push("/")
-    //     return;
-    // }
+  useEffect(() => {
 
     const fetchStudents = async () => {
         
@@ -31,7 +28,7 @@ const WeekOneAttendancePage = () => {
               headers: {
                   "Content-Type": "application/json"
               },
-              body: JSON.stringify({teacher: "linda"})
+              body: JSON.stringify({teacher: session?.user.name.toLowerCase()})
           })
               const data = await res.json()
               setStudents([...data])
@@ -49,7 +46,7 @@ const WeekOneAttendancePage = () => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({teacher: session.data.user.name.toLowerCase()})
+            body: JSON.stringify({teacher: session.user.name.toLowerCase()})
         })
             const result = await res.json()
 
@@ -71,12 +68,12 @@ const WeekOneAttendancePage = () => {
 
     checkAttendanceStatus()
 
-  }, [])
+  }, [session])
 
 
 
   return (
-    <main className="md:px-24 pt-6 h-full">
+    <main className="md:px-24 pt-6">
         <p className="text-center mb-6">
             {successMessage && (<span className="text-green-500">{successMessage}</span>)}
             {errorMessage && (<span className="text-red-500">{errorMessage}</span>)}

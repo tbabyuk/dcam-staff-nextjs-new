@@ -9,16 +9,14 @@ import { useRouter } from "next/navigation"
 const CompletedPage = () => {
 
   const router = useRouter()
-  const session = useSession()
+  const {data: session} = useSession()
   const {closestPayday} = usePayday()
   const [errorMessage, setErrorMessage] = useState("")
   const [payTotal, setPayTotal] = useState(null)
 
 
-  console.log("Loggin payTotal from 'completed' page -----------------------", payTotal)
 
   const notifyPaySubmitted = async () => {
-
 
     try {
       const res = await fetch("/api/notify", {
@@ -27,7 +25,7 @@ const CompletedPage = () => {
             "Content-Type": "application/json"
         },
 
-        body: JSON.stringify({pay: payTotal, teacher: session.data.user.name, payday: closestPayday})
+        body: JSON.stringify({pay: payTotal, teacher: session?.user.name, payday: closestPayday})
     })
         const {message} = await res.json()
         console.log("logging notify result message from completed page", message)
@@ -39,13 +37,14 @@ const CompletedPage = () => {
 
 
   const getPayTotal = async () => {
+
     try {
       const res = await fetch("/api/get-total", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({teacher: session.data.user.name.toLowerCase()})
+        body: JSON.stringify({teacher: session?.user.name.toLowerCase()})
     })
         const {totalPay} = await res.json()
         setPayTotal(totalPay)
@@ -59,11 +58,6 @@ const CompletedPage = () => {
 
   useEffect(() => {
 
-  if(session.status === "unauthenticated") {
-    router.push("/")
-    return;
-  }
-
   // check if attendance for both week 1 and 2 has been submitted
   const checkAttendanceStatus = async () => {
 
@@ -73,13 +67,14 @@ const CompletedPage = () => {
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({teacher: session.data.user.name.toLowerCase()})
+          body: JSON.stringify({teacher: session?.user.name.toLowerCase()})
       })
           const result = await res.json()
 
           if(result[0].week1Submitted && result[0].week2Submitted) {
               // get total pay owed
               getPayTotal()
+              return;
           } else {
               setErrorMessage("Please complete your attendance. Redirecting...")
               setTimeout(() => {router.push("/attendance/week1")}, 3000)

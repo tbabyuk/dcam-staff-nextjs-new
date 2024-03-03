@@ -11,7 +11,7 @@ export const Sidebar = () => {
 
   return (
         <div className={`${sidebarOpen ? "w-[180px]" : "w-[52px] overflow-hidden"} absolute top-0 left-0 h-screen transition-all duration-500 ease-in-out`} onMouseEnter={() => setSidebarOpen(true)} onMouseLeave={() => setSidebarOpen(false)}>
-            <ul className="h-full bg-[#375681] text-gray-200">
+            <ul className="h-[100vh] bg-[#375681] text-gray-200">
                 <li>
                     <Link href="/" className="flex justify-center py-2 mb-14 border-b-2 border-gray-200"><img src="/dcam-logo-white.png" width="35px" /></Link>
                 </li>
