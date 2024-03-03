@@ -1,7 +1,25 @@
 import {Schema, model, models} from "mongoose"
 
 
-const MetaSchema = new Schema({
+
+const userSchema = new Schema({
+    name: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    password: {
+        type: String,
+        required: true
+    }
+}, {timestamps: true})
+
+
+
+const metaSchema = new Schema({
     teacher: {
         type: String,
         required: true
@@ -17,7 +35,8 @@ const MetaSchema = new Schema({
 },{timestamps: true})
 
 
-const StudentSchema = new Schema({
+
+const studentSchema = new Schema({
     attendance: {
         type: Object,
         required: true
@@ -49,5 +68,8 @@ const StudentSchema = new Schema({
 }, {timestamps: true})
 
 
-export const Student = models.Student || model("Student", StudentSchema)
-export const Meta = models.Meta || model("Meta", MetaSchema)
+
+
+export const User = models.User || model("User", userSchema)
+export const Student = models.Student || model("Student", studentSchema)
+export const Meta = models.Meta || model("Meta", metaSchema)

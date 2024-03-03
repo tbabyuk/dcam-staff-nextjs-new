@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation"
 const WeekOneAttendancePage = () => {
 
   const router = useRouter()
-  const session = useSession()
+//   const session = useSession()
   const [students, setStudents] = useState([])
   const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
@@ -18,10 +18,10 @@ const WeekOneAttendancePage = () => {
 
   useEffect(() => {
 
-    if(session.status === "unauthenticated") {
-        router.push("/")
-        return;
-    }
+    // if(session.status === "unauthenticated") {
+    //     router.push("/")
+    //     return;
+    // }
 
     const fetchStudents = async () => {
         
@@ -31,7 +31,7 @@ const WeekOneAttendancePage = () => {
               headers: {
                   "Content-Type": "application/json"
               },
-              body: JSON.stringify({teacher: session.data.user.name.toLowerCase()})
+              body: JSON.stringify({teacher: "linda"})
           })
               const data = await res.json()
               setStudents([...data])
@@ -71,7 +71,7 @@ const WeekOneAttendancePage = () => {
 
     checkAttendanceStatus()
 
-  }, [session])
+  }, [])
 
 
 

@@ -31,3 +31,7 @@
 button:disabled {
   @apply bg-gray-400 hover:bg-gray-400 cursor-not-allowed
 }
+
+input {
+  @apply py-1 px-2 text-gray-800 rounded mb-6 bg-gray-100
+}

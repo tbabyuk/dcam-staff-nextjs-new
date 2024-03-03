@@ -1,5 +1,5 @@
 import { connectToStudentsDB } from "@/db/database";
-import { Meta } from "@/models/StudentSchema";
+import { Meta } from "@/models/models";
 
 export const POST = async (request) => {
     

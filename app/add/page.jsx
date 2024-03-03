@@ -1,5 +1,5 @@
 import { connectToDB } from '@/db/database'
-import { Student } from '@/models/StudentSchema'
+import { Student } from '@/models/models'
 
 
 const AddStudentPage = async () => {
