@@ -1,16 +1,19 @@
-import Image from 'next/image'
+
+
+import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation'
-import Link from 'next/link'
 import { LoginForm } from './components/LoginForm'
 
 
 const Home = async () =>  {
 
-  // const session = await auth()
+  const session = await getServerSession()
 
-  // if(session?.user) {
-  //   redirect("/welcome")
-  // }
+  console.log("loggin session from home page server component:", session)
+
+  if(session) {
+    redirect("/welcome")
+  }
 
 
   return (
