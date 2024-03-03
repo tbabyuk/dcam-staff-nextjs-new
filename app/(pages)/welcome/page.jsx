@@ -1,27 +1,16 @@
 "use client"
 
-import { useEffect } from "react"
 import { useSession } from "next-auth/react"
-import { useRouter } from "next/navigation"
-
+// How to get sesion data from a server component? Figure out
 
 
 const WelcomePage = () => {
 
-  const session = useSession()
-  const router = useRouter()
-
-
-  useEffect(() => {
-    if(session.status === "unauthenticated") {
-      router.push("/")
-      return;
-    }
-  }, [session])
+  const {data: session} = useSession()
 
 
   return (
-    <main className="page-container text-center">Welcome, {session?.data?.user?.name}! <br /><br />What would you like to do today?</main>
+    <main className="page-container text-center">Welcome, {session?.user.name}!</main>
   )
 }
 

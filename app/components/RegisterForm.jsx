@@ -74,7 +74,7 @@ export const RegisterForm = () => {
                 <input type="password" className="w-full" onChange={(e) => setPassword(e.target.value)} />
             </label>
             <button className="bg-green-600 hover:bg-green-700 py-2 text-gray-100 rounded">Register</button>
-            <div className="text-red-500 text-sm mt-2 h-4">{error}</div>
+            <div className="text-red-500 text-sm mt-2 h-4">{error && error}</div>
         </form>
     )
 }
