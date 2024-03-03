@@ -31,6 +31,10 @@ const metaSchema = new Schema({
     week2Submitted: {
         type: Boolean,
         required: true
+    },
+    payday: {
+        type: String,
+        required: true
     }
 },{timestamps: true})
 

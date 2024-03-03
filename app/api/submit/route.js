@@ -4,9 +4,9 @@ import { Student, Meta } from "@/models/models";
 export const POST = async (request) => {
     
 
-    const {attendance, teacher, week} = await request.json()
+    const {attendance, teacher, week, payday} = await request.json()
 
-    console.log("logging request from /submit API:", attendance, teacher, week)
+    console.log("logging request from /submit API:", attendance, teacher, week, payday)
 
     const getKey = () => {
         if(week === "week1Submitted") {
@@ -20,21 +20,14 @@ export const POST = async (request) => {
 
     
     try {
-        // await connectToStudentsDB();
-
-        // OLD CODE WHEN ATTENDANCE WAS AN ARRAY
-        // attendance.forEach( async (student) => {
-        //     await Student.updateOne({"teacher": teacher, "name": `${student.name}`}, 
-        //                         {$set: {[getKey()]: `${student.status}`}})
-
-        // })
+        await connectToStudentsDB();
 
         Object.entries(attendance).forEach( async ([key, value]) => {
             await Student.updateOne({"teacher": teacher, "name": key },
                                     {$set: {[getKey()]: value}})
         })
 
-        await Meta.updateOne({"teacher": teacher}, {$set: {[week]: true}})
+        await Meta.updateOne({"teacher": teacher}, {$set: {[week]: true, "payday": payday}})
         
         console.log("Week 1 submission updated successfully.");
 

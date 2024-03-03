@@ -12,6 +12,7 @@ export const usePayday = () => {
 
 
   const [closestPayday, setClosestPayday] = useState("")
+  const [closestPaydayUnformatted, setClosestPaydayUnformatted] = useState("")
 
   const [weekOneBoundaries, setWeekOneBoundaries] = useState({
     start: null,
@@ -43,6 +44,7 @@ export const usePayday = () => {
     const paydayArray = [new Date("2024, 03, 01"), new Date("2024, 03, 15"), new Date("2024, 03, 29"), new Date("2024, 04, 12"), new Date("2024, 04, 26")]
   
     const closest = closestTo(today, paydayArray)
+    setClosestPaydayUnformatted(closest)
     const closestPaydayFormatted = format(closest, "MMMM d, yyy")
     setClosestPayday(closestPaydayFormatted) 
     getWeekOneBoundaries(closest)
@@ -55,5 +57,5 @@ export const usePayday = () => {
     getClosestPayday()
   }, [])
 
-  return {closestPayday, weekOneBoundaries, weekTwoBoundaries}
+  return {closestPayday, closestPaydayUnformatted, weekOneBoundaries, weekTwoBoundaries}
 }

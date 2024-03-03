@@ -4,18 +4,20 @@ import { useState } from "react"
 import { StudentRow } from "../components/StudentRow"
 import { usePathname } from "next/navigation"
 import { useSession } from "next-auth/react"
+import { usePayday } from "../hooks/usePayday"
 
 
 
 export const AttendanceForm = ({students}) => {
 
+   const path = usePathname()
+   const {data: session} = useSession()
    const [attendance, setAttendance] = useState({})
    const [total, setTotal] = useState(0)
-   const path = usePathname()
-   const session = useSession()
+   const {closestPaydayUnformatted} = usePayday()
 
 
-console.log("logging attendance object:", attendance)
+console.log("From attendance form, closestPaydayUnformatted:", closestPaydayUnformatted)
 
    const handleSubmitAttendance = async (e) => {
         e.preventDefault()
@@ -28,7 +30,7 @@ console.log("logging attendance object:", attendance)
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({attendance, teacher: session.data.user.name.toLowerCase(), week: path === "/attendance/week1" ? "week1Submitted" : "week2Submitted" })
+                body: JSON.stringify({attendance, teacher: session?.user.name.toLowerCase(), week: path === "/attendance/week1" ? "week1Submitted" : "week2Submitted", payday: closestPaydayUnformatted  })
             })
             const {message} = await res.json()
 
