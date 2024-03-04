@@ -35,6 +35,10 @@ const metaSchema = new Schema({
     payday: {
         type: String,
         required: true
+    },
+    notifyEmailSent: {
+        type: Boolean,
+        required: true
     }
 },{timestamps: true})
 

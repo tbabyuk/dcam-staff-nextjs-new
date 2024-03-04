@@ -50,6 +50,8 @@ const WeekOneAttendancePage = () => {
         })
             const result = await res.json()
 
+            // console.log("logging result form check-meta API.................:", result)
+
             if(result[0].week1Submitted && result[0].week2Submitted) {
                 router.push("/attendance/completed")
                 return;

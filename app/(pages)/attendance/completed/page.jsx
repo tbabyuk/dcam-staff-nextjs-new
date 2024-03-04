@@ -25,7 +25,7 @@ const CompletedPage = () => {
             "Content-Type": "application/json"
         },
 
-        body: JSON.stringify({pay: payTotal, teacher: session?.user.name, payday: closestPayday})
+        body: JSON.stringify({pay: payTotal, teacher: session?.user.name.toLowerCase(), payday: closestPayday})
     })
         const {message} = await res.json()
         console.log("logging notify result message from completed page", message)

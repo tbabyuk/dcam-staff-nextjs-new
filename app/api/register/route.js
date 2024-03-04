@@ -1,3 +1,6 @@
+
+// NO UI FOR THIS LOGIC IN THIS APP. EXAMPLE ONLY.
+
 import { NextResponse } from "next/server"
 import { connectToStudentsDB } from "@/db/database"
 import { User } from "@/models/models"

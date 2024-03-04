@@ -2,8 +2,9 @@
 
 
 const DocsPage = () => {
+  
     return (
-      <div className="px-4 bg-green-300 h-screen">DocsPage</div>
+      <div className="page-container">Coming Soon...</div>
     )
   }
   

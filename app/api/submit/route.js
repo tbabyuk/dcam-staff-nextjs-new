@@ -1,4 +1,5 @@
 import { connectToStudentsDB } from "@/db/database";
+import { NextResponse } from "next/server";
 import { Student, Meta } from "@/models/models";
 
 export const POST = async (request) => {
@@ -31,9 +32,10 @@ export const POST = async (request) => {
         
         console.log("Week 1 submission updated successfully.");
 
-        return new Response(JSON.stringify({message: "success"}, {status: 200}))
+        return NextResponse.json({message: "success"}, {status: 200})
+
     } catch (error) {
-        return new Response("Failed to submit attendance", {status: 500})
+        return NextResponse.json({message: "Failed to submit attendance"}, {status: 500})
     }
 }
 

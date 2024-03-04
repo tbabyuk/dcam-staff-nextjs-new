@@ -1,5 +1,6 @@
 import { connectToStudentsDB } from "@/db/database";
 import { Student } from "@/models/models";
+import { NextResponse } from "next/server";
 
 
 export const POST = async (request) => {
@@ -17,18 +18,6 @@ export const POST = async (request) => {
                   teacher: teacher,
                 }
             },
-
-            // $cond: {
-            //   if: {
-            //     $or: [
-            //       { $eq: ["$attendance.week1", "present"] },
-            //       { $eq: ["$attendance.week1", "counted"] }
-            //     ]
-            //   },
-            //   then: "$pay",
-            //   else: 0
-            // }
-
             {
                 $group: {
                   _id: null,
@@ -71,10 +60,13 @@ export const POST = async (request) => {
 
         console.log("Logging totalPay from 'get-total' route:", totalPay)
 
-        return new Response(JSON.stringify({totalPay}), {status: 200})
+        // return new Response(JSON.stringify({totalPay}), {status: 200})
+        return NextResponse.json({totalPay}, {status: 200})
+
     } catch (error) {
         console.log("something went wrong with calculating total pay:", error.message)
-        return new Response("Failed to get total pay", {status: 500})
+        // return new Response("Failed to get total pay", {status: 500})
+        return NextResponse.json({message: "Failed to get total pay"}, {status: 200})
     }
 }
 

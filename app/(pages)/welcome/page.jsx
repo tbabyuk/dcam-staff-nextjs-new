@@ -42,7 +42,7 @@ const WelcomePage = () => {
 
 
   return (
-    <main className="page-container text-center">Welcome, {session?.user.name}!</main>
+    <main className="page-container text-center">Welcome, {session?.user.name}! What would you like to do today?</main>
   )
 }
 

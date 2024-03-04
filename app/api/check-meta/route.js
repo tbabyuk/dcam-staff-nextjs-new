@@ -1,5 +1,6 @@
 import { connectToStudentsDB } from "@/db/database";
 import { Meta } from "@/models/models";
+import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
     
@@ -13,9 +14,12 @@ export const POST = async (request) => {
 
         console.log("logging attendanceSubmitted:", result)
 
-        return new Response(JSON.stringify(result), {status: 200})
+        // return new Response(JSON.stringify(result), {status: 200})
+        return NextResponse.json(result, {status: 200})
+
     } catch (error) {
-        return new Response("Failed to fetch students", {status: 500})
+        // return new Response("Failed to fetch students", {status: 500})
+        return NextResponse.json({message: "Failed to fetch students"}, {status: 500})
     }
 }
 

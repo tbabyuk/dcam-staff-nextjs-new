@@ -17,7 +17,15 @@ export const LoginForm = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault()
+
+    if(!email || !password) {
+        setError("please enter all login credentials")
+        return;
+    }
+
+
     try {
+        setError("")
         const res = await signIn("credentials", {
             email,
             password,
@@ -37,15 +45,16 @@ export const LoginForm = () => {
   }
 
   return (
-        <form className="flex flex-col w-[300px] bg-black bg-opacity-30 text-gray-100 rounded-md mx-auto p-5" onSubmit={handleLogin}>
-            <h2 className="text-lg text-center mt-2 mb-2">Login Form</h2>
+        <form className="flex flex-col w-[330px] bg-black bg-opacity-30 text-gray-100 rounded-md mx-auto px-10 py-8" onSubmit={handleLogin}>
+            <h2 className="text-xl text-center mt-2 mb-6">Staff Login</h2>
             <label>
                 <span className="block mb-1">Email:</span>
                 <input 
                     type="email" 
                     className="w-full"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)} 
+                    onChange={(e) => setEmail(e.target.value)}
+                    autoFocus
                 />
             </label>
             <label>

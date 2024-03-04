@@ -19,7 +19,6 @@ export const Navbar = () => {
           {session?.user && (<span className="flex items-center mr-4">Hello, {session?.user.name}</span>)}
           <img src="/avatar1.jpg" className="h-[34px] rounded-full" />
           {session?.user && (<button className="flex items-center" onClick={() => signOut()}>Log Out</button>)}
-
         </div>
       </nav>
     )
