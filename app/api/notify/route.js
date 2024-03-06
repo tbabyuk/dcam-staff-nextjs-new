@@ -1,6 +1,6 @@
 import nodemailer from "nodemailer"
 import { NextResponse } from "next/server";
-import { connectToStudentsDB } from "@/db/database";
+import { connectToStaffDB } from "@/db/database";
 import { Meta } from "@/models/models";
 
 
@@ -19,7 +19,7 @@ export const POST = async (request) => {
     }
 
     try {
-        await connectToStudentsDB()
+        await connectToStaffDB()
         const {notifyEmailSent} = await Meta.findOne({"teacher": teacher},  {_id: 0, notifyEmailSent: 1})
 
 
@@ -40,7 +40,7 @@ export const POST = async (request) => {
                     subject: "Attendance Submitted!",
                     html: `
                     <small>(This is an automated message)</small><br><br>
-                    Teacher ${teacher} has submitted their pay for ${payday} payday!<br><br>
+                    Teacher ${teacher[0].toUpperCase() + teacher.slice("1")} has submitted their pay for ${payday} payday!<br><br>
                     Their total for this pay period is: $${pay}
                     `
                 }

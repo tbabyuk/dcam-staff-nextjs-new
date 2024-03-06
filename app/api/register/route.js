@@ -2,7 +2,7 @@
 // NO UI FOR THIS LOGIC IN THIS APP. EXAMPLE ONLY.
 
 import { NextResponse } from "next/server"
-import { connectToStudentsDB } from "@/db/database"
+import { connectToStaffDB } from "@/db/database";
 import { User } from "@/models/models"
 
 
@@ -13,7 +13,7 @@ export async function POST(req) {
     console.log("from server:", name, email, password)
 
     try {
-        await connectToStudentsDB()
+        await connectToStaffDB()
         await User.create({name, email, password})
         return NextResponse.json({message: "User successfully registered"}, {status: 201})
 

@@ -1,4 +1,4 @@
-import { connectToStudentsDB } from "@/db/database";
+import { connectToStaffDB } from "@/db/database";
 import { Meta } from "@/models/models";
 import { NextResponse } from "next/server";
 
@@ -10,7 +10,7 @@ export const POST = async (request) => {
     console.log("logging closestPayday from check-submit API", closestPayday, teacher)
 
     try {
-        await connectToStudentsDB()
+        await connectToStaffDB()
         const {payday} = await Meta.findOne({"teacher": teacher.toLowerCase()}, {_id: 0, payday: 1})
 
         // When closestPayday is bigger than the payday last submitted, reset all attendance and update the payday field with the closest payday

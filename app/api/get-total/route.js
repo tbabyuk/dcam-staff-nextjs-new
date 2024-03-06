@@ -1,4 +1,4 @@
-import { connectToStudentsDB } from "@/db/database";
+import { connectToStaffDB } from "@/db/database";
 import { Student } from "@/models/models";
 import { NextResponse } from "next/server";
 
@@ -10,7 +10,7 @@ export const POST = async (request) => {
     console.log("logging teacher name from /get-total API:", teacher)
 
     try {
-        await connectToStudentsDB()
+        await connectToStaffDB()
 
         const result = await Student.aggregate([
             {

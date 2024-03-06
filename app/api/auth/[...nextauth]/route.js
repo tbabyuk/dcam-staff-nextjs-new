@@ -1,7 +1,7 @@
 
 import NextAuth from "next-auth/next";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { connectToStudentsDB } from "@/db/database";
+import { connectToStaffDB } from "@/db/database";
 import { User } from "@/models/models";
 
 
@@ -17,7 +17,7 @@ export const authOptions = {
                 const {email, password} = credentials;
 
                 try {
-                    await connectToStudentsDB();
+                    await connectToStaffDB();
                     const user = await User.findOne({email})
 
                     if(!user) {

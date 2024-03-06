@@ -1,4 +1,4 @@
-import { connectToStudentsDB } from "@/db/database";
+import { connectToStaffDB } from "@/db/database";
 import { NextResponse } from "next/server";
 import { Student, Meta } from "@/models/models";
 
@@ -21,7 +21,7 @@ export const POST = async (request) => {
 
     
     try {
-        await connectToStudentsDB();
+        await connectToStaffDB();
 
         Object.entries(attendance).forEach( async ([key, value]) => {
             await Student.updateOne({"teacher": teacher, "name": key },

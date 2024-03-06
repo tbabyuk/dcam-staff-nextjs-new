@@ -1,4 +1,4 @@
-import { connectToStudentsDB } from "@/db/database";
+import { connectToStaffDB } from "@/db/database";
 import { Meta } from "@/models/models";
 import { NextResponse } from "next/server";
 
@@ -9,7 +9,7 @@ export const POST = async (request) => {
     console.log("logging teacher name from /check-meta API:", teacher)
 
     try {
-        await connectToStudentsDB()
+        await connectToStaffDB()
         const result = await Meta.find({"teacher": teacher})
 
         console.log("logging attendanceSubmitted:", result)

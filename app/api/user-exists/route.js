@@ -1,4 +1,4 @@
-import { connectToStudentsDB } from "@/db/database"
+import { connectToStaffDB } from "@/db/database";
 import { User } from "@/models/models"
 import { NextResponse } from "next/server"
 
@@ -8,7 +8,7 @@ export const POST = async (req) => {
     const {email} = await req.json()
 
     try {
-        await connectToStudentsDB()
+        await connectToStaffDB()
         const user = await User.findOne({email}).select("_id")
         console.log("Logging user from db search:", user) 
         return NextResponse.json({user})
