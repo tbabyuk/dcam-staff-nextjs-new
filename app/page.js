@@ -20,7 +20,7 @@ const Home = async () =>  {
     <main className="flex h-screen">
       <div className="w-full md:w-1/2 bg-blue-400 bg-[url('/home_bg_left.jpg')] bg-cover grid place-items-center">
           {/* <Link href="/api/auth/signin?callbackUrl=/welcome" className="sign-in-btn">SIGN IN</Link> */}
-          <img src="dcam-logo-white-long.png" width={240} className="absolute top-11" />
+          <img src="dcam-logo-white-long.png" width={200} className="absolute top-11" />
           <LoginForm />
       </div>
       <div className="hidden md:block bg-green-400 w-1/2 bg-[url('/home_bg_right.jpg')] bg-cover" />
