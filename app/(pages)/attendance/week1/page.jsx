@@ -76,7 +76,6 @@ const WeekOneAttendancePage = () => {
 
   return (
     <main className="md:px-24 pt-6">
-        <p>This is page 1</p>
         <p className="text-center mb-6">
             {successMessage && (<span className="text-green-500">{successMessage}</span>)}
             {errorMessage && (<span className="text-red-500">{errorMessage}</span>)}
