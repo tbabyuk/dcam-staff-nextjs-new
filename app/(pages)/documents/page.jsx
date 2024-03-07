@@ -54,8 +54,8 @@ const DocsPage = () => {
 
         {docsArray && (
           <div className="flex flex-col gap-8 text-center sm:text-left">
-            {docsArray.map((doc) => (
-              <DocLink doc={doc} />
+            {docsArray.map((doc, index) => (
+              <DocLink key={index} doc={doc} />
             ))}
           </div>
         )}
