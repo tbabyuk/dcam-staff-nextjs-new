@@ -20,7 +20,7 @@ export const POST = async (request) => {
         // const testDate = new Date("2024-03-05T05:00:00.000Z")
 
         if (new Date(payday) > new Date(payday)) {
-            await Meta.updateOne({"teacher": teacher.toLowerCase()}, {$set: {"week1Submitted": false, "week2Submitted": false, "payday": new Date(payday), "notifyEmailSent": false}})
+            await Meta.updateOne({"teacher": teacher.toLowerCase()}, {$set: {"week1Submitted": false, "week2Submitted": false, "payday": new Date(payday), "payTotal": 0, "notifyEmailSent": false}})
         }
 
         return NextResponse.json({message: "Submit date check performed successfully"}, {status: 200})
