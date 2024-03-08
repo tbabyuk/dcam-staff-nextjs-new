@@ -1,6 +1,7 @@
 import { connectToStaffDB } from "@/db/database";
 import { Student } from "@/models/models";
 import { NextResponse } from "next/server";
+import { Meta } from "@/models/models";
 
 
 export const POST = async (request) => {
@@ -57,6 +58,10 @@ export const POST = async (request) => {
 
 
         const totalPay = result[0].totalPayWeek1 + result[0].totalPayWeek2
+
+        console.log("Logging type of totalPay:", typeof totalPay)
+
+        await Meta.updateOne({"teacher": teacher}, {$set: {"totalPay": totalPay}})
 
         console.log("Logging totalPay from 'get-total' route:", totalPay)
 

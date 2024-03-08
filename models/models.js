@@ -32,6 +32,10 @@ const metaSchema = new Schema({
         type: Boolean,
         required: true
     },
+    totalPay: {
+        type: Number,
+        required: true
+    },
     payday: {
         type: String,
         required: true
