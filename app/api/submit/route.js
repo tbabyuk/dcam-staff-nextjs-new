@@ -5,15 +5,23 @@ import { Student, Meta } from "@/models/models";
 export const POST = async (request) => {
     
 
-    const {attendance, teacher, week, payday} = await request.json()
+    const {attendance, teacher, week, payday, teacherNotes} = await request.json()
 
-    console.log("logging request from /submit API:", attendance, teacher, week, payday)
+    console.log("logging request from /submit API:", attendance, teacher, week, payday, teacherNotes)
 
-    const getKey = () => {
+    const getAttendanceKey = () => {
         if(week === "week1Submitted") {
             return "attendance.week1"
         } else {
             return "attendance.week2"
+        }
+    }
+
+    const getNotesKey = () => {
+        if(week === "week1Submitted") {
+            return "week1Notes"
+        } else {
+            return "week2Notes"
         }
     }
 
@@ -25,12 +33,12 @@ export const POST = async (request) => {
 
         Object.entries(attendance).forEach( async ([key, value]) => {
             await Student.updateOne({"teacher": teacher, "name": key },
-                                    {$set: {[getKey()]: value}})
+                                    {$set: {[getAttendanceKey()]: value}})
         })
 
-        await Meta.updateOne({"teacher": teacher}, {$set: {[week]: true, "payday": payday}})
+        const result1 = await Meta.updateOne({"teacher": teacher}, {$set: {[week]: true, "payday": payday, [getNotesKey()]: teacherNotes}})
         
-        console.log("Week 1 submission updated successfully.");
+        console.log("MongoDB result1:", result1);
 
         return NextResponse.json({message: "success"}, {status: 200})
 

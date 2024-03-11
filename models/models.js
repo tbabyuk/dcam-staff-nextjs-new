@@ -43,6 +43,12 @@ const metaSchema = new Schema({
     notifyEmailSent: {
         type: Boolean,
         required: true
+    },
+    week1Notes: {
+        type: String,
+    },
+    week2Notes: {
+        type: String,
     }
 },{timestamps: true})
 

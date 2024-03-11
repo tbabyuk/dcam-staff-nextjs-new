@@ -5,7 +5,7 @@ import { AuthProvider } from './providers/provider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "DCAM Staff",
+  title: "DCAM | Staff",
   description: "Log your teaching hours",
   robots: {
     index: false,

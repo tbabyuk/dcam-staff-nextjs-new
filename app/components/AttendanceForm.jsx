@@ -15,6 +15,7 @@ export const AttendanceForm = ({students}) => {
    const [attendance, setAttendance] = useState({})
    const [total, setTotal] = useState(0)
    const {closestPaydayUnformatted} = usePayday()
+   const [teacherNotes, setTeacherNotes] = useState("")
 
 
 console.log("From attendance form, closestPaydayUnformatted:", closestPaydayUnformatted)
@@ -30,7 +31,7 @@ console.log("From attendance form, closestPaydayUnformatted:", closestPaydayUnfo
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({attendance, teacher: session?.user.name.toLowerCase(), week: path === "/attendance/week1" ? "week1Submitted" : "week2Submitted", payday: closestPaydayUnformatted  })
+                body: JSON.stringify({attendance, teacher: session?.user.name.toLowerCase(), week: path === "/attendance/week1" ? "week1Submitted" : "week2Submitted", payday: closestPaydayUnformatted, teacherNotes  })
             })
             const {message} = await res.json()
 
@@ -38,13 +39,6 @@ console.log("From attendance form, closestPaydayUnformatted:", closestPaydayUnfo
                 location.reload()
             }
 
-            // if(path === "/attendance/week1" && message === "success") {
-            //     console.log("Week 1 Attendance submitted successfully! Redirecting to Week 2 attendance...")
-            //     setTimeout(() => {router.push("/attendance/week2")}, 2000)
-            // } else {
-            //     console.log("Week 2 Attendance submitted successfully!")
-            //     setTimeout(() => {router.push("/attendance/success")}, 2000)
-            // }
             } catch (error) {
                 console.log("Error with post request:", error)
             }
@@ -70,6 +64,13 @@ console.log("From attendance form, closestPaydayUnformatted:", closestPaydayUnfo
             </tbody>
         </table>
         <p className="mt-4 text-center"><span className="font-semibold">Total: ${total?.toFixed(2)}</span></p>
+
+        <textarea 
+            className="mt-8 block mx-auto border-2 border-gray-300 w-full sm:w-[350px] md:w-[550px] p-3" cols="30" rows="6" placeholder="Enter any notes you may have about your student attendance, substitute work, etc."
+            value={teacherNotes}
+            onChange={(e) => setTeacherNotes(e.target.value)}
+        />
+
         <button type="submit" className="submit-btn" disabled={students.length !== Object.keys(attendance).length}>Submit Attendance</button>
     </form>
   )
