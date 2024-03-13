@@ -13,7 +13,6 @@ const WeekTwoAttendancePage = () => {
   const router = useRouter()
   const {data: session} = useSession()
   const [students, setStudents] = useState([])
-  const [successMessage, setSuccessMessage] = useState("")
   const [errorMessage, setErrorMessage] = useState("")
 
 
@@ -73,7 +72,6 @@ const WeekTwoAttendancePage = () => {
   return (
     <main className="md:px-24 pt-6">
         <p className="text-center mb-6">
-            {successMessage && (<span className="text-green-500">{successMessage}</span>)}
             {errorMessage && (<span className="text-red-500">{errorMessage}</span>)}
         </p>
         <AttendanceForm students={students} />
