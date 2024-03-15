@@ -5,9 +5,9 @@ import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
     
-    const {teacher, closestPayday} = await request.json()
+    const {teacher, closestPaydayUnformatted} = await request.json()
 
-    console.log("logging closestPayday from check-submit API", closestPayday, teacher)
+    console.log("logging closestPayday from check-submit API", closestPaydayUnformatted, teacher)
 
     try {
         await connectToStaffDB()
@@ -15,11 +15,11 @@ export const POST = async (request) => {
 
         // When closestPayday is bigger than the payday last submitted, reset all attendance and update the payday field with the closest payday
         
-        console.log("loggin closestPayday from 'check-submit' API", closestPayday)
+        console.log("loggin closestPayday from 'check-submit' API", closestPaydayUnformatted)
 
         // const testDate = new Date("2024-03-05T05:00:00.000Z")
 
-        if (new Date(payday) > new Date(payday)) {
+        if (new Date(closestPaydayUnformatted) > new Date(payday)) {
             await Meta.updateOne({"teacher": teacher.toLowerCase()}, {$set: {"week1Submitted": false, "week2Submitted": false, "payday": new Date(payday), "totalPay": 0, "notifyEmailSent": false}})
         }
 

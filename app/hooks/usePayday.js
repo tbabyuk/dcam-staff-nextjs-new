@@ -11,8 +11,8 @@ import { subDays, closestTo, format } from "date-fns"
 export const usePayday = () => {
 
 
-  const [closestPayday, setClosestPayday] = useState("")
   const [closestPaydayUnformatted, setClosestPaydayUnformatted] = useState("")
+  const [closestPaydayFormatted, setClosestPaydayFormatted] = useState("")
   const [weekOneBoundaries, setWeekOneBoundaries] = useState({
     start: null,
     end: null
@@ -21,7 +21,6 @@ export const usePayday = () => {
     start: null,
     end: null
   })
-
 
   const getWeekOneBoundaries = (closest) => {
     console.log("GetWeekOneBoundaries fired:")
@@ -41,12 +40,11 @@ export const usePayday = () => {
     const today = new Date()
     const paydayArray = [new Date("2024, 03, 01"), new Date("2024, 03, 15"), new Date("2024, 03, 29"), new Date("2024, 04, 12"), new Date("2024, 04, 26"), new Date("2024, 05, 10"), new Date("2024, 05, 24"), new Date("2024, 06, 07"), new Date("2024, 06, 21")]
   
-    const closest = closestTo(today, paydayArray)
-    setClosestPaydayUnformatted(closest)
-    const closestPaydayFormatted = format(closest, "MMMM d, yyy")
-    setClosestPayday(closestPaydayFormatted) 
-    getWeekOneBoundaries(closest)
-    getWeekTwoBoundaries(closest)
+    const closestPayday = closestTo(today, paydayArray)
+    setClosestPaydayUnformatted(closestPayday)
+    setClosestPaydayFormatted(format(closestPayday, "MMMM d, yyy")) 
+    getWeekOneBoundaries(closestPayday)
+    getWeekTwoBoundaries(closestPayday)
   }
   
 
@@ -54,5 +52,5 @@ export const usePayday = () => {
     getClosestPayday()
   }, [])
 
-  return {closestPayday, closestPaydayUnformatted, weekOneBoundaries, weekTwoBoundaries}
+  return {closestPaydayFormatted, closestPaydayUnformatted, weekOneBoundaries, weekTwoBoundaries}
 }

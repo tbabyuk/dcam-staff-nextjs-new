@@ -24,7 +24,7 @@ const WelcomePage = () => {
           headers: {
               "Content-Type": "application/json"
           },
-          body: JSON.stringify({teacher: session.user.name, closestPayday: closestPaydayUnformatted})
+          body: JSON.stringify({teacher: session.user.name, closestPaydayUnformatted})
       })
 
       const {message} = await res.json()
