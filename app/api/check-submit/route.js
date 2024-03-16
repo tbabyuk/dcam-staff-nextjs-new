@@ -16,8 +16,6 @@ export const POST = async (request) => {
         // When closestPayday is bigger than the payday last submitted, reset all attendance and update the payday field with the closest payday
         // const testDate = new Date("2024-03-05T05:00:00.000Z")
 
-        console.log("LOgging payday as it is in mongoDB:", payday)
-
         if (new Date(closestPaydayUnformatted) > new Date(payday)) {
             await Meta.updateOne({"teacher": teacher.toLowerCase()}, {$set: {"week1Submitted": false, "week2Submitted": false, "payday": new Date(closestPaydayUnformatted), "totalPay": 0, "notifyEmailSent": false}})
         }
