@@ -11,6 +11,8 @@ const WelcomePage = () => {
   const {data: session} = useSession()
   const {closestPaydayUnformatted} = usePayday()
 
+  console.log("from welcome page, logging closestPaydayUnformatted", closestPaydayUnformatted)
+
 
   useEffect(() => {
     
@@ -18,21 +20,24 @@ const WelcomePage = () => {
 
       console.log("checkDateSubmitted FIRED")
 
-      try {
-        const res = await fetch("/api/check-submit", {
-          method: "POST",
-          headers: {
-              "Content-Type": "application/json"
-          },
-          body: JSON.stringify({teacher: session.user.name, closestPaydayUnformatted})
-      })
+      if (closestPaydayUnformatted) {
 
-      const {message} = await res.json()
-
-      console.log("from check-submit API call:", message)
-
-      } catch (error) {
-        console.log("An error occured while checking DateSubmitted")
+        try {
+          const res = await fetch("/api/check-submit", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({teacher: session.user.name, closestPaydayUnformatted})
+        })
+  
+        const {message} = await res.json()
+  
+        console.log("from check-submit API call:", message)
+  
+        } catch (error) {
+          console.log("An error occured while checking DateSubmitted")
+        }
       }
     }
 

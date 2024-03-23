@@ -16,10 +16,10 @@ export const POST = async (request) => {
         // When closestPayday is bigger than the payday last submitted, reset all attendance and update the payday field with the closest payday
         // const testDate = new Date("2024-03-05T05:00:00.000Z")
 
-        console.log("from check-submit API route, most recent payday:", new Date(payday))
-        console.log("from check-submit API route, closest payday unformatted:", new Date(closestPaydayUnformatted))
+        // console.log("from check-submit API route, most recent payday:", new Date(payday))
+        // console.log("from check-submit API route, closest payday unformatted:", new Date(closestPaydayUnformatted))
 
-        console.log("check if closestPaydayUnformatted is bigger than last payday:", new Date(closestPaydayUnformatted) > new Date(payday))
+        // console.log("check if closestPaydayUnformatted is bigger than last payday:", new Date(closestPaydayUnformatted) > new Date(payday))
 
         if (new Date(closestPaydayUnformatted) > new Date(payday)) {
             await Meta.updateOne({"teacher": teacher.toLowerCase()}, {$set: {"week1Submitted": false, "week2Submitted": false, "payday": new Date(closestPaydayUnformatted), "totalPay": 0, "notifyEmailSent": false}})
@@ -28,6 +28,7 @@ export const POST = async (request) => {
         return NextResponse.json({message: "Submit date check performed successfully"}, {status: 200})
 
     } catch (error) {
+        console.error("Error:", error);
         return NextResponse.json({message: "Failed to fetch students"}, {status: 500})
     }
 }
