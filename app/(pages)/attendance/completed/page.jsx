@@ -10,7 +10,7 @@ const CompletedPage = () => {
 
   const router = useRouter()
   const {data: session} = useSession()
-  const {closestPayday} = usePayday()
+  const {closestPaydayFormatted} = usePayday()
   const [errorMessage, setErrorMessage] = useState("")
   const [payTotal, setPayTotal] = useState(null)
 
@@ -106,12 +106,11 @@ const CompletedPage = () => {
             {errorMessage 
                 ? (<span className="text-red-600">{errorMessage}</span>)
                 : (<span className="text-green-600">
-                        Your attendance for the <span className="font-semibold">{closestPayday}</span> payday has been submitted!<br /><br /> 
+                        Your attendance for the <span className="font-semibold">{closestPaydayFormatted}</span> payday has been submitted!<br /><br /> 
                         Your total for this pay period is <span className="font-semibold">${payTotal && payTotal.toFixed(2)}</span><br /><br />
                         (Keep in mind that this total might be adjusted depending on the accuracy of your submission and any additional pay owed to you)
                    </span>)
             }
-
       </p>
     </main>
   )
