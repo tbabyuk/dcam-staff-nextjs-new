@@ -9,8 +9,6 @@ export const Navbar = () => {
     const getTeacherImage = (teacher) => {
 
       switch (teacher) {
-        case "Aaron":
-          return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Faaron_profile.jpg?alt=media&token=2b78a7a0-87a2-4f52-8786-30f15a24e030"
         case "Chloe":
           return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Fchloe_profile.jpg?alt=media&token=febda0cf-b8a5-4246-9c4a-33344a00ecdf"
         case "Giancarlo":
@@ -23,8 +21,6 @@ export const Navbar = () => {
           return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Fsenya_profile.JPG?alt=media&token=79a21e2b-eac8-450b-94b8-7983a5a33b0f"
         case "Taisiya":
           return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Ftaisiya_profile.png?alt=media&token=85e990e0-ef3b-4b20-ba35-67ba2457c4c7"
-        case "Tiago":
-          return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Ftiago_profile.jpg?alt=media&token=99aca1c4-080e-4847-8332-21c791d715d5"
         default:
           return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Ffemale_profile.jpg?alt=media&token=57d1586b-1c07-4c8b-accf-be33aca3f917"
       }
