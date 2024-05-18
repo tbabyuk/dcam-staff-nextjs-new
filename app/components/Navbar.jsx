@@ -8,7 +8,6 @@ import { SidebarMobile } from "./SidebarMobile"
 
 export const Navbar = () => {
 
-
     const getTeacherImage = (teacher) => {
 
       switch (teacher) {
@@ -37,14 +36,13 @@ export const Navbar = () => {
     console.log("logging session from Navar:", session)
 
     return (
-      // <nav>
-      <nav className="px-4 h-[52px] bg-[#375681] text-gray-100 border-b-2 border-gray-200 flex items-center relative">
-          <SidebarMobile />
-          <div className="flex gap-4 ms-auto absolute right-4">
-            {session?.user && (<span className="flex items-center mr-4">Hello, {session?.user.name}</span>)}
-            <img src={getTeacherImage(session?.user.name)} className="h-[34px] rounded-full" />
-            {session?.user && (<button className="btn btn-sm btn-outline text-base-100" onClick={() => signOut({ callbackUrl: "/" })}>Log Out</button>)}
-          </div>
-      </nav>
+        <nav className="px-4 h-[52px] bg-[#375681] text-gray-100 border-b-2 border-gray-200 flex items-center relative">
+            <SidebarMobile />
+            <div className="flex gap-4 ms-auto absolute right-4">
+                {session?.user && (<span className="flex items-center mr-4">Hello, {session?.user.name}</span>)}
+                <img src={getTeacherImage(session?.user.name)} className="h-[34px] rounded-full" />
+                {session?.user && (<button className="btn btn-outline btn-sm text-gray-100 z-50" onClick={() => signOut({ callbackUrl: "/" })}>Log Out</button>)}
+            </div>
+        </nav>
     )
   }
