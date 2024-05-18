@@ -6,7 +6,7 @@ import { usePayday } from "@/app/hooks/usePayday"
 
 
 
-const WelcomePage = () => {
+const DashboardPage = () => {
 
   const {data: session} = useSession()
   const {closestPaydayUnformatted} = usePayday()
@@ -47,8 +47,10 @@ const WelcomePage = () => {
 
 
   return (
-    <main className="page-container text-center">Welcome, {session?.user.name}! What would you like to do today?</main>
+    <main className="py-24 px-8 md:px-24 text-center">
+        Welcome, {session?.user.name}! What would you like to do today?
+    </main>
   )
 }
 
-export default WelcomePage
+export default DashboardPage

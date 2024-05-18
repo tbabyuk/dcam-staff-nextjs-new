@@ -74,13 +74,13 @@ const WeekOneAttendancePage = () => {
 
 
   return (
-    <main className="md:px-24 pt-6">
-        <p className="text-center mb-6">
-            {errorMessage && (<span className="text-red-500">{errorMessage}</span>)}
-        </p>
-        <AttendanceForm students={students} />
-    </main>
-  )
+        <div className="py-24 px-8 md:px-24 h-[100%]">
+            <p className="text-center mb-6">
+                {errorMessage && (<span className="text-red-500">{errorMessage}</span>)}
+            </p>
+            <AttendanceForm students={students} />
+        </div>
+    )
 }
 
 export default WeekOneAttendancePage

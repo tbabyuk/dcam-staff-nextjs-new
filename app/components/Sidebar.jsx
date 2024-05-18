@@ -1,27 +1,63 @@
 "use client"
 
-import { useState } from "react"
 import {HiOutlineClock, HiOutlineDocumentText} from "react-icons/hi"
+import { LuLayoutDashboard } from "react-icons/lu";
+
 import Link from "next/link"
+import Image from "next/image"
+
+
+const routes = [
+    {
+        label: "Dashboard",
+        icon: <LuLayoutDashboard size="1.2rem" />,
+        href: "/dashboard",
+        color: "text-sky-500"
+    },
+    {
+        label: "Log My Hours",
+        icon: <HiOutlineClock size="1.3rem" />,
+        href: "/attendance/week1",
+        color: "text-pink-700"
+    },
+    {
+        label: "Documents",
+        icon: <HiOutlineDocumentText size="1.2rem" />,
+        href: "/documents",
+        color: "text-emerald-500"
+    }
+]
 
 
 export const Sidebar = () => {
 
-  const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-        <div className={`${sidebarOpen ? "w-[180px]" : "w-[52px] overflow-hidden"} absolute top-0 left-0 h-screen transition-all duration-500 ease-in-out`} onMouseEnter={() => setSidebarOpen(true)} onMouseLeave={() => setSidebarOpen(false)}>
-            <ul className="h-[100vh] bg-[#375681] text-gray-200">
-                <li>
-                    <Link href="/" className="flex justify-center py-2 mb-14 border-b-2 border-gray-200"><img src="/dcam-logo-white.png" width="35px" /></Link>
-                </li>
-                <li>
-                    <Link href="/attendance/week1" className="flex ps-3 cursor-pointer mb-5"><HiOutlineClock size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">Log My Hours</span>)}</Link>
-                </li>
-                <li>
-                    <Link href="/documents" className="flex ps-3 cursor-pointer"><HiOutlineDocumentText size="28px" className="min-w-[28px] me-2" />{sidebarOpen && (<span className="text-nowrap invisible-to-visible">My Docs</span>)}</Link>
-                </li>
-            </ul>
+        <div className="space-y-4 w-[200px] py-4 flex flex-col h-full bg-[#111827] text-gray-100">
+            <div className="px-3 py-2 flex-1">
+                <Link href="/dashboard" className="flex items-center pl-3 mb-14">
+                    <div className="relative w-8 h-8 mr-4">
+                        <Image
+                            fill
+                            alt="logo"
+                            src="/dcam-logo-white.png"
+                        />
+                    </div>
+                    <span className="">
+                        DCAM Staff
+                    </span>
+                </Link>
+                <ul className="space-y-1">
+                    {routes.map((route) => (
+                        <li key={route.href}>
+                            <Link href={route.href} className="flex items-center flex-1 text-sm group p-3 2-full justify-start font-medium cursor-pointer hover:text-gray-100 hover:bg-white/10 rounded-lg transition">
+                                <span className={`h-5 w-5 mr-3 ${route.color}`}>{route.icon}</span>
+                                {route.label}
+                            </Link>
+                        </li>
+                    ))}
+                </ul>
+            </div>
         </div>
     )
 }

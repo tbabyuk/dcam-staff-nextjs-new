@@ -50,18 +50,16 @@ const DocsPage = () => {
     }, [session])
   
     return (
-      <div className="page-container">
-
-        {docsArray && (
-          <div className="flex flex-col gap-8 text-center sm:text-left">
-            {docsArray.map((doc, index) => (
-              <DocLink key={index} doc={doc} />
-            ))}
-          </div>
-        )}
-        {message && (<p>{message}</p>)}
-
-      </div>
+        <div className="py-24 px-8 md:px-24">
+          {docsArray && (
+            <div className="flex flex-col gap-8 text-center sm:text-left">
+              {docsArray.map((doc, index) => (
+                <DocLink key={index} doc={doc} />
+              ))}
+            </div>
+          )}
+          {message && (<p>{message}</p>)}
+        </div>
     )
   }
   

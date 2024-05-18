@@ -7,6 +7,7 @@ import { User } from "@/models/models";
 
 
 export const authOptions = {
+    
     providers: [
         CredentialsProvider({
             name: "credentials",

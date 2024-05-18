@@ -12,7 +12,7 @@ const Home = async () =>  {
   console.log("loggin session from home page server component:", session)
 
   if(session) {
-    redirect("/welcome")
+    redirect("/dashboard")
   }
 
 

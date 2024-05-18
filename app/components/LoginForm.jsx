@@ -37,7 +37,7 @@ export const LoginForm = () => {
             setError("wrong email or password")
             return
         }
-        router.replace("welcome")
+        router.replace("dashboard")
 
     } catch (error) {
         setError("Ooops, something went wrong!")
