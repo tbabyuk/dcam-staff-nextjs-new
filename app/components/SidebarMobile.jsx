@@ -12,7 +12,7 @@ export const SidebarMobile = () => {
             <input id="my-drawer" type="checkbox" className="drawer-toggle" />
             <div>
                 {/* Page content here */}
-                <label htmlFor="my-drawer" className="btn btn-primary drawer-button">
+                <label htmlFor="my-drawer" className="btn btn-primary drawer-button p-0">
                     <RxHamburgerMenu size="2rem" />
                 </label>
             </div> 
