@@ -23,14 +23,12 @@ export const usePayday = () => {
   })
 
   const getWeekOneBoundaries = (closest) => {
-    console.log("GetWeekOneBoundaries fired:")
     const weekOneStartDate = subDays(closest, 18)
     const weekOneEndDate = subDays(closest, 12)
     setWeekOneBoundaries((prev) => ({...prev, start: format(weekOneStartDate, "MMM d, yyy" ), end: format(weekOneEndDate, "MMM d, yyy")}))
   }
 
   const getWeekTwoBoundaries = (closest) => {
-    console.log("GetWeekOneBoundaries fired:")
     const weekTwoStartDate = subDays(closest, 11)
     const weekTwoEndDate = subDays(closest, 5)
     setWeekTwoBoundaries((prev) => ({...prev, start: format(weekTwoStartDate, "MMM d, yyy" ), end: format(weekTwoEndDate, "MMM d, yyy")}))
@@ -38,7 +36,7 @@ export const usePayday = () => {
 
   const getClosestPayday = () => {
     const today = new Date()
-    const paydayArray = [new Date("2024, 03, 01"), new Date("2024, 03, 15"), new Date("2024, 03, 29"), new Date("2024, 04, 12"), new Date("2024, 04, 26"), new Date("2024, 05, 10"), new Date("2024, 05, 24"), new Date("2024, 06, 07"), new Date("2024, 06, 21")]
+    const paydayArray = [new Date("2024-03-01"), new Date("2024-03-15"), new Date("2024-03-29"), new Date("2024-04-12"), new Date("2024-04-26"), new Date("2024-05-10"), new Date("2024-05-24"), new Date("2024-06-07"), new Date("2024-06-21")]
   
     const closestPayday = closestTo(today, paydayArray)
     setClosestPaydayUnformatted(closestPayday)
