@@ -36,7 +36,7 @@ export const usePayday = () => {
 
   const getClosestPayday = () => {
     const today = new Date()
-    const paydayArray = [new Date("2024-03-01"), new Date("2024-03-15"), new Date("2024-03-29"), new Date("2024-04-12"), new Date("2024-04-26"), new Date("2024-05-10"), new Date("2024-05-24"), new Date("2024-06-07"), new Date("2024-06-21")]
+    const paydayArray = [new Date("2024-03-01"), new Date("2024-03-15"), new Date("2024-03-29"), new Date("2024-04-12"), new Date("2024-04-26"), new Date("2024-05-10"), new Date("2024-05-24"), new Date("2024-06-07"), new Date("2024-06-21"), new Date("2024-07-05"), new Date("2024-07-19"), new Date("2024-08-02"), new Date("2024-08-16"), new Date("2024-08-30"), new Date("2024-09-13"), new Date("2024-09-27"), new Date("2024-10-11"), new Date("2024-10-25"), new Date("2024-11-08"), new Date("2024-11-22"), new Date("2024-12-06"), new Date("2024-12-20")]
   
     const closestPayday = closestTo(today, paydayArray)
     setClosestPaydayUnformatted(closestPayday)
