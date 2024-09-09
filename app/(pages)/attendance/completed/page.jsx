@@ -107,7 +107,7 @@ const CompletedPage = () => {
                   : (<span className="text-green-600">
                           Your attendance for the <span className="font-semibold">{closestPaydayFormatted}</span> payday has been submitted!<br /><br /> 
                           Your total for this pay period is <span className="font-semibold">${payTotal && payTotal.toFixed(2)}</span><br /><br />
-                          (Keep in mind that this total might be adjusted depending on the accuracy of your submission and any additional pay owed to you)
+                          Keep in mind that this total might be adjusted depending on the accuracy of your submission and any additional pay owed to you
                     </span>)
               }
         </p>
