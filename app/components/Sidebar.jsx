@@ -1,6 +1,7 @@
 "use client"
 
 import {HiOutlineClock, HiOutlineDocumentText} from "react-icons/hi"
+import { MdSchool } from "react-icons/md";
 import { LuLayoutDashboard } from "react-icons/lu";
 import Link from "next/link"
 import Image from "next/image"
@@ -19,6 +20,12 @@ const routes = [
         icon: <HiOutlineClock size="1.3rem" />,
         href: "/attendance/week1",
         color: "text-pink-700"
+    },
+    {
+        label: "Training",
+        icon: <MdSchool size="1.3rem" />,
+        href: "/training",
+        color: "text-amber-600"
     },
     {
         label: "Documents",
