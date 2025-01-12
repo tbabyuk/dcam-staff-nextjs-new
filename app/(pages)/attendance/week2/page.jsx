@@ -9,7 +9,6 @@ import { useRouter } from "next/navigation"
 
 const WeekTwoAttendancePage = () => {
 
-
   const router = useRouter()
   const {data: session} = useSession()
   const [students, setStudents] = useState([])
