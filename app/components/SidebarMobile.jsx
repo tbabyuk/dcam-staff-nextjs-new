@@ -11,9 +11,6 @@ export const SidebarMobile = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
 
-    console.log("logging drawer status:", isDrawerOpen)
-
-
     return (
         <div className="drawer md:hidden z-20">
             <input id="my-drawer" type="checkbox" className="drawer-toggle" checked={isDrawerOpen} onChange={() => setIsDrawerOpen(!isDrawerOpen)} />

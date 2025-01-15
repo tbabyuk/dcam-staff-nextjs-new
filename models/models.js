@@ -49,6 +49,10 @@ const metaSchema = new Schema({
     },
     week2Notes: {
         type: String,
+    },
+    trainingVideos: {
+        type: Map,
+        of: Boolean
     }
 },{timestamps: true})
 
