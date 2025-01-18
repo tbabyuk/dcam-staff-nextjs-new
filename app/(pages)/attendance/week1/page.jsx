@@ -75,7 +75,7 @@ const WeekOneAttendancePage = () => {
 
 
   return (
-        <div className="py-24 px-8 md:px-24 h-[100%]">
+        <div className="py-16 px-8 md:px-24 h-[100%]">
             <p className="text-center mb-6">
                 {errorMessage && (<span className="text-red-500">{errorMessage}</span>)}
             </p>

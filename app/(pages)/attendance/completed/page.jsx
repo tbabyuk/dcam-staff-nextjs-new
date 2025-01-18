@@ -100,7 +100,7 @@ const CompletedPage = () => {
 
 
   return (
-      <div className="py-24 px-8 md:px-24">
+      <div className="py-20 px-8 md:px-24">
         <p className="text-center mb-6">
               {errorMessage 
                   ? (<span className="text-red-600">{errorMessage}</span>)

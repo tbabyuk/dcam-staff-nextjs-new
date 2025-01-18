@@ -3,7 +3,7 @@
 import DocLink from "@/app/components/DocLink"
 import { useState, useEffect } from "react"
 import { useSession } from "next-auth/react"
-
+import { PageHeader } from "@/app/components/PageHeader"
 
 
 const DocsPage = () => {
@@ -50,16 +50,21 @@ const DocsPage = () => {
     }, [session])
   
     return (
-        <div className="py-24 px-8 md:px-24">
-          {docsArray && (
-            <div className="flex flex-col gap-8 text-center sm:text-left">
-              {docsArray.map((doc, index) => (
-                <DocLink key={index} doc={doc} />
-              ))}
-            </div>
-          )}
-          {message && (<p>{message}</p>)}
-        </div>
+        <>
+          <PageHeader>
+              <h2>Dear teachers, here you will find your T4A slips for tax purposes. These are issued by the end of February for the previous calendar year. As long as you made at least $500.00 for the previous calendar year, you will be issued a T4A slip. If you think you are owed a T4A slip but do not see it here, please contact admin.</h2>
+          </PageHeader>
+          <div className="pt-16 pb-10 px-5 md:px-10">
+              {docsArray && (
+                <div className="flex flex-col gap-8 text-center sm:text-left">
+                  {docsArray.map((doc, index) => (
+                    <DocLink key={index} doc={doc} />
+                  ))}
+                </div>
+              )}
+              {message && (<p>{message}</p>)}
+          </div>
+        </>
     )
   }
   

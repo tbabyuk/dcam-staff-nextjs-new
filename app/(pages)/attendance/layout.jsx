@@ -1,11 +1,10 @@
-
-import { Subheader } from "@/app/components/Subheader"
+import { AttendanceHeader } from "@/app/components/AttendanceHeader"
 
 
 export default function AttendanceLayout({children}) {
   return (
     <div className="">
-        <Subheader />
+        <AttendanceHeader />
         {children}
     </div>
  )

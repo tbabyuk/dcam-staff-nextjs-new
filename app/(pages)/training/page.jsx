@@ -4,6 +4,7 @@ import ReactPlayer from "react-player"
 import { useState, useEffect } from "react"
 import { BsCheckCircleFill, BsXCircleFill } from "react-icons/bs"
 import { useSession } from "next-auth/react"
+import { PageHeader } from "@/app/components/PageHeader"
 
 
 const TrainingPage = () => {
@@ -75,9 +76,9 @@ if (!isClient) return null;
 
   return (
     <>
-      <div className="p-5 md:p-8 leading-8 text-center text-[0.9rem] bg-gray-200 text-gray-700 flex flex-col justify-center items-center">
+      <PageHeader>
           <h2>Dear teachers, here you will find training videos on the various topics you will need to know to be effective and knowledgeable as a teacher. Most of the videos are mandatory and you might be given a quiz that you will need to successfully pass based on these videos (more on this later).</h2>
-      </div>
+      </PageHeader>
       <div className="p-5 md:p-10 flex flex-wrap gap-8 justify-evenly items-center">
           <div className="w-full sm:w-[400px] rounded-xl overflow-hidden">
                 <div className="flex justify-between items-center mb-2">
