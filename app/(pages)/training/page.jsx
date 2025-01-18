@@ -79,7 +79,7 @@ if (!isClient) return null;
       <PageHeader>
           <h2>Dear teachers, here you will find training videos on the various topics you will need to know to be effective and knowledgeable as a teacher. Most of the videos are mandatory and you might be given a quiz that you will need to successfully pass based on these videos (more on this later).</h2>
       </PageHeader>
-      <div className="p-5 md:p-10 flex flex-wrap gap-8 justify-evenly items-center">
+      <div className="p-5 md:p-10 flex flex-wrap gap-6 justify-evenly items-center">
           <div className="w-full sm:w-[400px] rounded-xl overflow-hidden">
                 <div className="flex justify-between items-center mb-2">
                     <h3 className="text-2xl font-medium text-center">Logging Your Hours</h3>
@@ -94,7 +94,22 @@ if (!isClient) return null;
                     onEnded={() => handleVideoEnd("loggingHours")}
                     controls
                 />
-          </div>                
+          </div>               
+          <div className="w-full sm:w-[400px] rounded-xl overflow-hidden">
+                <div className="flex justify-between items-center mb-2">
+                    <h3 className="text-2xl font-medium text-center">Importance Of Agendas</h3>
+                    {!trainingVideosStatus?.importanceOfAgendas && (<div className="flex text-red-500"><span>unwatched</span><BsXCircleFill size="1.4rem" className="ms-2" /></div>)}
+                    {trainingVideosStatus?.importanceOfAgendas && (<div className="flex text-green-500"><span>watched</span><BsCheckCircleFill size="1.4rem" className="ms-2" /></div>)}
+                </div>
+                <ReactPlayer
+                    className=""
+                    url="https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/videos%2Fstaff_tutorials%2Fimportance_of_agendas_final.mp4?alt=media&token=cbf5688e-e1b1-4688-b5ff-ba42cd288800"
+                    width="100%"
+                    height="100%"
+                    onEnded={() => handleVideoEnd("importanceOfAgendas")}
+                    controls
+                />
+          </div>               
         </div>
     </>
   )
