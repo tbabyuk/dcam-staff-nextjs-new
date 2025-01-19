@@ -23,6 +23,8 @@ export const Navbar = () => {
           return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Fparand_profile.jpg?alt=media&token=fc23a0ce-6669-4e02-b223-5c96c40ee354"
         case "Julia":
           return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Fjulia_profile.jpg?alt=media&token=d662a38d-ca21-4eea-bbb0-3ed659bd8288"
+        case "Anna":
+          return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Fanna_profile.jpg?alt=media&token=40c58f3c-57c2-482c-bb53-3890ad8ab49c"
         default:
           return "https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/profile_photos%2Ffemale_profile.jpg?alt=media&token=57d1586b-1c07-4c8b-accf-be33aca3f917"
       }
