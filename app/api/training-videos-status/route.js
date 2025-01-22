@@ -13,6 +13,7 @@ export const POST = async (request) => {
     try {
         await connectToStaffDB()
         const user = await Meta.findOne({ teacher: teacher });
+        console.log("logging user Training videos from APIIIIIIIIIIIIIII", user.trainingVideos)
         return NextResponse.json({trainingVideos: user.trainingVideos}, {status: 200})
     } catch (error) {
         console.log("Logging mongoDB error:", error)

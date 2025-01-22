@@ -33,8 +33,6 @@ export const Navbar = () => {
     const {data: session} = useSession()
 
 
-    console.log("logging session from Navar:", session)
-
     return (
         <nav className="px-4 h-[52px] bg-[#375681] text-gray-100 border-b-2 border-gray-200 flex items-center relative">
             <SidebarMobile />
