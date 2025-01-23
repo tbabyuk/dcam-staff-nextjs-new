@@ -108,8 +108,8 @@ if (!isClient) return null;
           <h2>Dear teachers, here you will find training videos on the various topics you will need to know to be effective and knowledgeable as a teacher. Most of the videos are mandatory and you might be given a quiz that you will need to successfully pass based on these videos (more on this later).</h2>
       </PageHeader>
       <div className="p-5 md:p-10 flex flex-wrap gap-6 justify-evenly items-center">
-            {trainingVideosArray && trainingVideosArray.map((video) => (
-                <div className="w-full sm:w-[400px] rounded-xl overflow-hidden">
+            {trainingVideosArray && trainingVideosArray.map((video, index) => (
+                <div key={index} className="w-full sm:w-[400px] rounded-xl overflow-hidden">
                   <div className="flex justify-between items-center mb-2">
                       <h3 className="text-2xl font-medium text-center">{video.title}</h3>
                       {!trainingVideosStatus?.[video.shortTitle] && (<div className="flex text-red-500"><span>unwatched</span><BsXCircleFill size="1.4rem" className="ms-2" /></div>)}
