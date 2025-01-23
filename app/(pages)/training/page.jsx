@@ -12,9 +12,10 @@ const TrainingPage = () => {
   const {data: session} = useSession()
   const [isClient, setIsClient] = useState(false)
   const [trainingVideosStatus, setTrainingVideosStatus] = useState({})
+  const [trainingVideosArray, setTrainingVideosArray] = useState([])
 
 
-  console.log("logging trainingVideosStatus state", trainingVideosStatus)
+  console.log("logging trainingVideosArray state", trainingVideosArray)
 
 
   const handleVideoEnd = async (watchedVideo) => {
@@ -61,15 +62,42 @@ const TrainingPage = () => {
       }
   }
 
+  const getTrainingVideos = async () => {
+    console.log("Logging user data from getTrainingVideos:", session?.user.name.toLowerCase())
+
+    try {
+      const res = await fetch("/api/get-training-videos", {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({teacher: session?.user.name.toLowerCase(), instrument: "all"})
+      })
+      const {videoList} = await res.json()
+
+      // setTrainingVideosStatus(trainingVideos)
+      console.log("Logging response from API inside front end:", videoList)
+      setTrainingVideosArray([...videoList])
+      getTrainingVideosStatus()
+
+      } catch (error) {
+          console.log("Error with post request:", error)
+      }
+
+
+  }
+
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+
+  // fetch relevant training videos based on teacher's instrument
   useEffect(() => {
     if (session?.user?.name) {
-      getTrainingVideosStatus()
+      getTrainingVideos()
     }
-  }, [session]);
+  }, [session])
 
 
 if (!isClient) return null;
@@ -80,36 +108,24 @@ if (!isClient) return null;
           <h2>Dear teachers, here you will find training videos on the various topics you will need to know to be effective and knowledgeable as a teacher. Most of the videos are mandatory and you might be given a quiz that you will need to successfully pass based on these videos (more on this later).</h2>
       </PageHeader>
       <div className="p-5 md:p-10 flex flex-wrap gap-6 justify-evenly items-center">
-          <div className="w-full sm:w-[400px] rounded-xl overflow-hidden">
-                <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-2xl font-medium text-center">Logging Your Hours</h3>
-                    {!trainingVideosStatus?.loggingHours && (<div className="flex text-red-500"><span>unwatched</span><BsXCircleFill size="1.4rem" className="ms-2" /></div>)}
-                    {trainingVideosStatus?.loggingHours && (<div className="flex text-green-500"><span>watched</span><BsCheckCircleFill size="1.4rem" className="ms-2" /></div>)}
-                </div>
-                <ReactPlayer
-                    className=""
-                    url="https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/videos%2Fstaff_tutorials%2Flogging_your_hours_final.mp4?alt=media&token=5ed54171-2704-4bd6-a450-0601bb993b32"
-                    width="100%"
-                    height="100%"
-                    onEnded={() => handleVideoEnd("loggingHours")}
-                    controls
-                />
-          </div>               
-          <div className="w-full sm:w-[400px] rounded-xl overflow-hidden">
-                <div className="flex justify-between items-center mb-2">
-                    <h3 className="text-2xl font-medium text-center">Importance Of Agendas</h3>
-                    {!trainingVideosStatus?.importanceOfAgendas && (<div className="flex text-red-500"><span>unwatched</span><BsXCircleFill size="1.4rem" className="ms-2" /></div>)}
-                    {trainingVideosStatus?.importanceOfAgendas && (<div className="flex text-green-500"><span>watched</span><BsCheckCircleFill size="1.4rem" className="ms-2" /></div>)}
-                </div>
-                <ReactPlayer
-                    className=""
-                    url="https://firebasestorage.googleapis.com/v0/b/dcam-staff.appspot.com/o/videos%2Fstaff_tutorials%2Fimportance_of_agendas_final.mp4?alt=media&token=cbf5688e-e1b1-4688-b5ff-ba42cd288800"
-                    width="100%"
-                    height="100%"
-                    onEnded={() => handleVideoEnd("importanceOfAgendas")}
-                    controls
-                />
-          </div>               
+            {trainingVideosArray && trainingVideosArray.map((video) => (
+                <div className="w-full sm:w-[400px] rounded-xl overflow-hidden">
+                  <div className="flex justify-between items-center mb-2">
+                      <h3 className="text-2xl font-medium text-center">{video.title}</h3>
+                      {!trainingVideosStatus?.[video.shortTitle] && (<div className="flex text-red-500"><span>unwatched</span><BsXCircleFill size="1.4rem" className="ms-2" /></div>)}
+                      {trainingVideosStatus?.[video.shortTitle] && (<div className="flex text-green-500"><span>watched</span><BsCheckCircleFill size="1.4rem" className="ms-2" /></div>)}
+                  </div>
+                  <ReactPlayer
+                      className=""
+                      url={video.url}
+                      width="100%"
+                      height="100%"
+                      onEnded={() => handleVideoEnd(video.shortTitle)}
+                      controls
+                  />
+                </div>               
+              ))
+            }
         </div>
     </>
   )
