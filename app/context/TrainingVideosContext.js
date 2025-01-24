@@ -9,15 +9,13 @@ const TrainingVideosContext = createContext()
 
 export const TrainingVideosStatusProvider = ({children}) => {
 
-    // const [videosStatus, setVideosStatus] = useState({})
-
     const [assignedTrainingVideos, setAssignedTrainingVideos] = useState([])
-    const [teacherTrainingVideosData, setTeacherTrainingVideosData] = useState([])
+    const [teacherTrainingVideosData, setTeacherTrainingVideosData] = useState({})
     const {data: session} = useSession()
 
 
-
     const getTeacherTrainingVideosData = async () => {
+
         try {
           const res = await fetch("/api/training-videos-status", {
               method: "POST",
@@ -28,8 +26,6 @@ export const TrainingVideosStatusProvider = ({children}) => {
           })
           const {trainingVideosData} = await res.json()
 
-          console.log("Logging trainingVideosData from TrainingVideosContext))))))))):", trainingVideosData)
-
           setTeacherTrainingVideosData(trainingVideosData)
     
           } catch (error) {
@@ -39,7 +35,6 @@ export const TrainingVideosStatusProvider = ({children}) => {
 
 
     const getAssignedTrainingVideos = async () => {
-        console.log("Logging user data from getTrainingVideos:", session?.user.name.toLowerCase())
     
         try {
         const res = await fetch("/api/get-training-videos", {
@@ -51,10 +46,6 @@ export const TrainingVideosStatusProvider = ({children}) => {
         })
         const {videoList} = await res.json()
     
-        // setTrainingVideosStatus(trainingVideos)
-        console.log("Logging response from TrainingVideosContext--------------------:", videoList)
-        // setTrainingVideosArray([...videoList])
-        // getTrainingVideosStatus()
         setAssignedTrainingVideos(videoList)
     
         } catch (error) {
@@ -64,14 +55,16 @@ export const TrainingVideosStatusProvider = ({children}) => {
 
 
     useEffect(() => {
-        console.log("useEFFECT inside TtrainingVideosContext FIREDDDDDDDDDDDDDDDDDDDDDDDDDDDDD")
-        // getTrainingVideosStatus()
-        getAssignedTrainingVideos()
-    }, [session])
+        if(session?.user?.name) {
+            getAssignedTrainingVideos()
+        }
+    }, [session?.user?.name])
 
 
     useEffect(() => {
-        getTeacherTrainingVideosData()
+        if(assignedTrainingVideos.length > 0) {
+            getTeacherTrainingVideosData()
+        }
     }, [assignedTrainingVideos])
 
     return(
@@ -82,4 +75,4 @@ export const TrainingVideosStatusProvider = ({children}) => {
 }
 
 
-export const useTrainingVideosData = () => useContext(TrainingVideosContext)
+export const useTrainingVideosData = () => useContext(TrainingVideosContext);

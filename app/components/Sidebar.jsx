@@ -1,13 +1,14 @@
 "use client"
 
 import {HiOutlineClock, HiOutlineDocumentText} from "react-icons/hi"
+import { BsCheckCircleFill } from "react-icons/bs"
 import { MdSchool } from "react-icons/md";
 import { LuLayoutDashboard } from "react-icons/lu";
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
+import { useTrainingVideosData } from "../context/TrainingVideosContext";
 
 
 const routes = [
@@ -42,11 +43,8 @@ const routes = [
 export const Sidebar = ({setIsDrawerOpen}) => {
 
     const path = usePathname();
-    const {data: session} = useSession()
     const [numUnwatchedVideos, setNumUnwatchedVideos] = useState(0)
-
-
-    console.log("Logging numUnwatchedVideos state from Sidebar:", numUnwatchedVideos)
+    const {assignedTrainingVideos, teacherTrainingVideosData} = useTrainingVideosData()
 
 
     const handleLinkClick = () => {
@@ -58,40 +56,20 @@ export const Sidebar = ({setIsDrawerOpen}) => {
     }
 
 
-    // const getTrainingVideosStatus = async () => {
-    //     console.log("GetTrainingVideosFIRED")
-    //     console.log("Current teacher is:", session?.user.name.toLowerCase())
-    //     try {
-    //       const res = await fetch("/api/training-videos-status", {
-    //           method: "POST",
-    //           headers: {
-    //               "Content-Type": "application/json"
-    //           },
-    //           body: JSON.stringify({teacher: session?.user.name.toLowerCase()})
-    //       })
-    //       const {trainingVideos} = await res.json()
-
-    //       if(trainingVideos === undefined) {
-    //         return setNumUnwatchedVideos(2)
-    //       }
-    //       console.log("Logging trainingVideos from Sidebar:", trainingVideos)
-
-    //       const unwatchedVideos = 2 - Object.keys(trainingVideos).length
-
-    //       setNumUnwatchedVideos(unwatchedVideos)
-    
-    
-    //       } catch (error) {
-    //           console.log("Error with post request:", error)
-    //       }
-    //   }
+    const getNumUnwatchedTrainingVideos = () => {
+        if (!teacherTrainingVideosData || typeof teacherTrainingVideosData !== "object") {
+            setNumUnwatchedVideos(assignedTrainingVideos.length);
+            return;
+        }
+        const numOfAssignedVideos = assignedTrainingVideos.length;
+        const numOfWatchedVideos = Object.values(teacherTrainingVideosData).filter(vid => vid === true).length;
+        setNumUnwatchedVideos(numOfAssignedVideos - numOfWatchedVideos);
+    }
 
 
-    //   useEffect(() => {
-    //     if (session?.user?.name) {
-    //       getTrainingVideosStatus()
-    //     }
-    //   }, [session]);
+    useEffect(() => {
+        getNumUnwatchedTrainingVideos()
+    }, [assignedTrainingVideos, teacherTrainingVideosData])
 
 
     return (
@@ -114,7 +92,7 @@ export const Sidebar = ({setIsDrawerOpen}) => {
                         <li key={route.href} onClick={handleLinkClick}>
                             <Link href={route.href} className={`flex items-center flex-1 text-sm group p-3 2-full justify-start font-medium cursor-pointer hover:text-gray-100 hover:bg-white/10 rounded-lg transition ${path === route.href && "text-gray-100 bg-white/10"}`}>
                                 <span className={`h-5 w-5 mr-3 ${route.color}`}>{route.icon}</span>
-                                {route.label}{route.label === "Training" && numUnwatchedVideos > 0 && <span className="ms-1 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">{numUnwatchedVideos}</span>}
+                                {route.label}{route.label === "Training" && numUnwatchedVideos > 0 ? (<span className="ms-1 bg-red-500 text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">{numUnwatchedVideos}</span>) : route.label === "Training" && numUnwatchedVideos === 0 ? (<BsCheckCircleFill className="ms-1 h-4 w-4 text-green-500" />) : ""}
                             </Link>
                         </li>
                     ))}
