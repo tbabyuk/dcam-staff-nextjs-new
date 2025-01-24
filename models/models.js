@@ -58,7 +58,7 @@ const metaSchema = new Schema({
     week2Notes: {
         type: String,
     },
-    trainingVideos: {
+    trainingVideosRecords: {
         type: Map,
         of: Boolean
     },

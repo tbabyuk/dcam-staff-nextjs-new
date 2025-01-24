@@ -46,6 +46,9 @@ export const Sidebar = ({setIsDrawerOpen}) => {
     const [numUnwatchedVideos, setNumUnwatchedVideos] = useState(0)
 
 
+    console.log("Logging numUnwatchedVideos state from Sidebar:", numUnwatchedVideos)
+
+
     const handleLinkClick = () => {
         if(setIsDrawerOpen) {
             setIsDrawerOpen(false)
@@ -55,40 +58,40 @@ export const Sidebar = ({setIsDrawerOpen}) => {
     }
 
 
-    const getTrainingVideosStatus = async () => {
-        console.log("GetTrainingVideosFIRED")
-        console.log("Current teacher is:", session?.user.name.toLowerCase())
-        try {
-          const res = await fetch("/api/training-videos-status", {
-              method: "POST",
-              headers: {
-                  "Content-Type": "application/json"
-              },
-              body: JSON.stringify({teacher: session?.user.name.toLowerCase()})
-          })
-          const {trainingVideos} = await res.json()
+    // const getTrainingVideosStatus = async () => {
+    //     console.log("GetTrainingVideosFIRED")
+    //     console.log("Current teacher is:", session?.user.name.toLowerCase())
+    //     try {
+    //       const res = await fetch("/api/training-videos-status", {
+    //           method: "POST",
+    //           headers: {
+    //               "Content-Type": "application/json"
+    //           },
+    //           body: JSON.stringify({teacher: session?.user.name.toLowerCase()})
+    //       })
+    //       const {trainingVideos} = await res.json()
 
-          if(trainingVideos === undefined) {
-            return setNumUnwatchedVideos(2)
-          }
-          console.log("Logging trainingVideos from Sidebar:", trainingVideos)
+    //       if(trainingVideos === undefined) {
+    //         return setNumUnwatchedVideos(2)
+    //       }
+    //       console.log("Logging trainingVideos from Sidebar:", trainingVideos)
 
-          const unwatchedVideos = 2 - Object.keys(trainingVideos).length
+    //       const unwatchedVideos = 2 - Object.keys(trainingVideos).length
 
-          setNumUnwatchedVideos(unwatchedVideos)
+    //       setNumUnwatchedVideos(unwatchedVideos)
     
     
-          } catch (error) {
-              console.log("Error with post request:", error)
-          }
-      }
+    //       } catch (error) {
+    //           console.log("Error with post request:", error)
+    //       }
+    //   }
 
 
-      useEffect(() => {
-        if (session?.user?.name) {
-          getTrainingVideosStatus()
-        }
-      }, [session]);
+    //   useEffect(() => {
+    //     if (session?.user?.name) {
+    //       getTrainingVideosStatus()
+    //     }
+    //   }, [session]);
 
 
     return (

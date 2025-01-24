@@ -12,7 +12,7 @@ export const POST = async (request) => {
 
     try {
         await connectToStaffDB()
-        await Meta.updateOne({"teacher": teacher}, {$set: {[`trainingVideos.${watchedVideo}`]: true}})
+        await Meta.updateOne({"teacher": teacher}, {$set: {[`trainingVideosRecords.${watchedVideo}`]: true}})
         return NextResponse.json({message: "success"}, {status: 200})
     } catch (error) {
         console.log("Logging mongoDB error:", error)
