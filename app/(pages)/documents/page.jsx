@@ -52,7 +52,7 @@ const DocsPage = () => {
     return (
         <>
           <PageHeader>
-              <h2>Dear teachers, here you will find your T4A slips for tax purposes. These are issued by the end of February for the previous calendar year. As long as you made at least $500.00 for the previous calendar year, you will be issued a T4A slip. If you think you are owed a T4A slip but do not see it here, please contact admin.</h2>
+              <h2>Dear teachers, here you will find your T4A slips for tax purposes. These are issued by the end of February for the previous calendar year. As long as you made at least $500.00 during the previous calendar year, you will be issued a T4A slip. If you think you are owed a T4A slip but do not see it here, please contact admin.</h2>
           </PageHeader>
           <div className="pt-16 pb-10 px-5 md:px-10">
               {docsArray && (
