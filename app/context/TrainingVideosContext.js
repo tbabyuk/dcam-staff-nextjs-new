@@ -13,6 +13,7 @@ export const TrainingVideosStatusProvider = ({children}) => {
     const [teacherTrainingVideosData, setTeacherTrainingVideosData] = useState({})
     const {data: session} = useSession()
 
+    
 
     const getTeacherTrainingVideosData = async () => {
 
@@ -42,7 +43,7 @@ export const TrainingVideosStatusProvider = ({children}) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({teacher: session?.user.name.toLowerCase(), instrument: "all"})
+            body: JSON.stringify({ teacher: session?.user.name })
         })
         const {videoList} = await res.json()
     

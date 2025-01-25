@@ -62,7 +62,10 @@ export const Sidebar = ({setIsDrawerOpen}) => {
             return;
         }
         const numOfAssignedVideos = assignedTrainingVideos.length;
+        console.log("logging numOfAssignedVideos", numOfAssignedVideos)
         const numOfWatchedVideos = Object.values(teacherTrainingVideosData).filter(vid => vid === true).length;
+
+        console.log("Logging num of watched videos:", numOfWatchedVideos)
         setNumUnwatchedVideos(numOfAssignedVideos - numOfWatchedVideos);
     }
 
