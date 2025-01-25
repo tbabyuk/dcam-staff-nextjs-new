@@ -18,7 +18,12 @@ const userSchema = new Schema({
     instruments: {
         type: [String],
         required: true
-    }
+    },
+    profileImage: {
+        type: String,
+        required: true
+    },
+
 }, {timestamps: true})
 
 
