@@ -14,7 +14,6 @@ export const TrainingVideosStatusProvider = ({children}) => {
     const {data: session} = useSession()
 
     
-
     const getTeacherTrainingVideosData = async () => {
 
         try {
@@ -43,7 +42,7 @@ export const TrainingVideosStatusProvider = ({children}) => {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ teacher: session?.user.name })
+            body: JSON.stringify({teacher: session?.user.name})
         })
         const {videoList} = await res.json()
     

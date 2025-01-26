@@ -12,12 +12,12 @@ export const POST = async (request) => {
         await connectToStaffDB()
 
         // First, get current user's instruments array
-        const userObject = await User.findOne({ name: teacher })
+        const userObject = await User.findOne({name: teacher})
         const userInstrumentsArray = userObject.instruments;
 
         // Now, use instruments array to find relevant training video for each instrument inside the array
         const assignedVideos = await TrainingVideo.find({
-            instrument: { $in: userInstrumentsArray }, // match instrument with any value in userInstrumentsArray
+            instrument: {$in: userInstrumentsArray}, // match instrument with any value in userInstrumentsArray
           });
 
         return NextResponse.json({videoList: assignedVideos}, {status: 200})
