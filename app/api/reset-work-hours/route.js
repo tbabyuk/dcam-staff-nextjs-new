@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server"
 import nodemailer from "nodemailer"
+import { connectToStaffDB } from "@/db/database"
+import { Meta } from "@/models/models"
+import { getWeek } from "date-fns"
 
 
-
-export async function POST(request) {
+export const POST = async (request) => {
 
     const {secret} = await request.json()
 
@@ -11,30 +13,45 @@ export async function POST(request) {
         return NextResponse.json({ message: "Secret is required" }, { status: 400 })
     }
 
-    const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: "terry@strictlywebdev.com",
-        pass: process.env.STRICTLY_EMAIL_APP_PASS
+    const isOddWeek = (date) => {
+        const weekNumber = getWeek(date);  // Get the week number for the given date
+        return weekNumber % 2 !== 0 ? true : false
     }
+
+    const today = new Date();
+
+    if(!isOddWeek(today)) {
+        return NextResponse.json({ message: "this week is even, so no update is required" }, { status: 200 })
+    }
+
+    const transporter = nodemailer.createTransport({
+        service: "gmail",
+        auth: {
+            user: "terry@strictlywebdev.com",
+            pass: process.env.STRICTLY_EMAIL_APP_PASS
+        }
     })
 
     const mailOptions = {
-    from: "terry@strictlywebdev.com",
-    to: ["terry@dacapomusic.ca"],
-    subject: "Cron Job Ran",
-    html: `
-    <strong>The secret from EasyCron is:</strong><br />
-    <small>${secret}</small>
-    `
-}
-
+        from: "terry@strictlywebdev.com",
+        to: ["terry@dacapomusic.ca"],
+        subject: "Cron Job Ran",
+        html: `
+        <strong>Zapier cron job has run:</strong><br />
+        <small>Teacher work hours have been reset</small>
+        `
+    }
 
     try {
+        await connectToStaffDB()
+        await Meta.updateMany(
+            { teacher: { $nin: ['demo1', 'demo2', 'demo3', 'demo4', 'demo5'] } },  // update all teachers except these ones
+            { $set: { week1Submitted: false, week2Submitted: false } } // set submitted fields to "false"
+        )  
         await transporter.sendMail(mailOptions);
-        return NextResponse.json({ message: "email sent successfully" },{ status: 200 })
+        return NextResponse.json({ message: "all submit fields updated successfully and email sent" },{ status: 200 })
     } catch (error) {
-        console.log("An error occurred:", error.message)
-        return NextResponse.json({ message: "there was a problem sending an email"},{ status: 500 })
+        console.log("Logging mongoDB error:", error)
+        return NextResponse.json({message: "failed to update some or all fields or send email"}, {status: 500})
     }
 }

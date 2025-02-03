@@ -2,9 +2,10 @@ import { connectToStaffDB } from "@/db/database";
 import { NextResponse } from "next/server";
 import { Student, Meta } from "@/models/models";
 
+
+
 export const POST = async (request) => {
     
-
     const {attendance, teacher, week, payday, teacherNotes} = await request.json()
 
     console.log("logging request from /submit API:", attendance, teacher, week, payday, teacherNotes)
