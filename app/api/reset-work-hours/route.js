@@ -20,8 +20,8 @@ export const POST = async (request) => {
 
     const today = new Date();
 
-    if(!isOddWeek(today)) {
-        return NextResponse.json({ message: "this week is even, so no update is required" }, { status: 200 })
+    if(isOddWeek(today)) {
+        return NextResponse.json({ message: "this week is odd, so no update is required" }, { status: 200 })
     }
 
     const transporter = nodemailer.createTransport({
