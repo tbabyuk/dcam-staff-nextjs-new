@@ -16,28 +16,7 @@ const CompletedPage = () => {
 
 
 
-  const notifyPaySubmitted = async () => {
-
-    try {
-      const res = await fetch("/api/notify", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-
-        body: JSON.stringify({pay: payTotal, teacher: session?.user.name.toLowerCase(), payday: closestPayday})
-    })
-        const {message} = await res.json()
-        console.log("logging notify result message from completed page", message)
-
-    } catch (error) {
-      console.log("error sending notify email:", error.message)
-    }
-  }
-
-
   const getPayTotal = async () => {
-
     try {
       const res = await fetch("/api/get-total", {
         method: "POST",
@@ -52,15 +31,10 @@ const CompletedPage = () => {
     } catch (error) {
       console.log("error getting total pay:", error.message)
     }
-
   }
-
-
-  useEffect(() => {
 
   // check if attendance for both week 1 and 2 has been submitted
   const checkAttendanceStatus = async () => {
-
     try {
       const res = await fetch("/api/check-meta", {
           method: "POST",
@@ -85,31 +59,25 @@ const CompletedPage = () => {
           console.log("Error fetching meta data:", error)
       }
     }
-
-    checkAttendanceStatus()
-  }, [session])
-
+  
 
   useEffect(() => {
-    if(payTotal !== null) {
-      notifyPaySubmitted();
-    }
-  }, [payTotal]);
-  
+    checkAttendanceStatus()
+  }, [session])
 
 
 
   return (
       <div className="py-20 px-8 md:px-24">
         <p className="text-center mb-6">
-              {errorMessage 
-                  ? (<span className="text-red-600">{errorMessage}</span>)
-                  : (<span className="text-green-600">
-                          Your attendance for the <span className="font-semibold">{closestPaydayFormatted}</span> payday has been submitted!<br /><br /> 
-                          Your total for this pay period is <span className="font-semibold">${payTotal && payTotal.toFixed(2)}</span><br /><br />
-                          Keep in mind that this total might be adjusted depending on the accuracy of your submission and any additional pay owed to you
-                    </span>)
-              }
+            {errorMessage 
+                ? (<span className="text-red-600">{errorMessage}</span>)
+                : (<span className="text-green-600">
+                        Your attendance for the <span className="font-semibold">{closestPaydayFormatted}</span> payday has been submitted!<br /><br /> 
+                        Your total for this pay period is <span className="font-semibold">${payTotal && payTotal.toFixed(2)}</span><br /><br />
+                        Keep in mind that this total might be adjusted depending on the accuracy of your submission and any additional pay owed to you
+                  </span>)
+            }
         </p>
       </div>
   )
