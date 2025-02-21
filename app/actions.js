@@ -59,7 +59,7 @@ export const sendNotifyAdminEmailAction = async (teacher, day) => {
     const notifyEmailOptions =
     {
         from: "info@dacapomusic.ca",
-        to: "terry@dacapomusic.ca",
+        to: "info@dacapomusic.ca",
         subject: `${teacher} has updated their hours for ${day} `,
         html: `
             <div style="font-family: Arial, sans-serif; padding: 0 0 30px 0">
