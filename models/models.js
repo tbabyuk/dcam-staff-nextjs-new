@@ -23,6 +23,9 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    availability: {
+        type: Array
+    }
 
 }, {timestamps: true})
 

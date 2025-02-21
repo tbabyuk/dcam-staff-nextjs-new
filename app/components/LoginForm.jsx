@@ -50,7 +50,8 @@ export const LoginForm = () => {
             <label>
                 <span className="block mb-1">Email:</span>
                 <input 
-                    type="email" 
+                    type="email"
+                    autoComplete="email"
                     className="w-full"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -60,7 +61,8 @@ export const LoginForm = () => {
             <label>
                 <span className="block mb-1">Password:</span>
                 <input 
-                    type="password" 
+                    type="password"
+                    autoComplete="current-password"
                     className="w-full"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)} 
