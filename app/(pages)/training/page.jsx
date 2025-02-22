@@ -52,9 +52,9 @@ if (!isClient) return null;
       </PageHeader>
       <div className="p-5 md:p-10 flex flex-wrap gap-6 justify-evenly items-center">
             {assignedTrainingVideos && assignedTrainingVideos.map((video, index) => (
-                <div key={index} className="w-full sm:w-[400px] rounded-xl overflow-hidden">
+                <div key={index} className="w-full sm:w-[350px] rounded-xl overflow-hidden">
                   <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg md:text-2xl font-medium text-center">{video.title}</h3>
+                      <h3 className="text-lg md:text-xl font-medium text-center">{video.title}</h3>
                       {teacherTrainingVideosData?.[video.shortTitle] ? (<div className="flex text-green-500"><span>watched</span><BsCheckCircleFill size="1.4rem" className="ms-2" /></div>) : (<div className="flex text-red-500"><span>unwatched</span><BsXCircleFill size="1.4rem" className="ms-2" /></div>)}
                   </div>
                   <ReactPlayer
