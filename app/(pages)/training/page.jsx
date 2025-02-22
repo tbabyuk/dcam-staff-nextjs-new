@@ -52,7 +52,7 @@ if (!isClient) return null;
       </PageHeader>
       <div className="px-5 py-12 md:px-12 lg:px-16 flex flex-wrap gap-4 gap-y-8 justify-evenly items-center">
             {assignedTrainingVideos && assignedTrainingVideos.map((video, index) => (
-                <div key={index} className="w-full w-[390px] rounded-xl overflow-hidden">
+                <div key={index} className="w-[390px] rounded-xl overflow-hidden">
                   <div className="flex justify-between items-center mb-2">
                       <h3 className="text-xl font-medium text-center">{video.title}</h3>
                       {teacherTrainingVideosData?.[video.shortTitle] ? (<div className="flex text-green-500"><span>watched</span><BsCheckCircleFill size="1.4rem" className="ms-2" /></div>) : (<div className="flex text-red-500"><span>unwatched</span><BsXCircleFill size="1.4rem" className="ms-2" /></div>)}
