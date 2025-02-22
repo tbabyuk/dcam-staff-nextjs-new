@@ -6,8 +6,8 @@ import { TrainingVideosStatusProvider } from './context/TrainingVideosContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: "DCAM | Staff",
-  description: "Log your teaching hours",
+  title: "DCAM | Portal",
+  description: "DCAM Teacher Portal",
   robots: {
     index: false,
     follow: false,

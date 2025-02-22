@@ -50,11 +50,11 @@ if (!isClient) return null;
       <PageHeader>
           <h2>Dear teachers, here you will find training videos on the various topics you will need to know to be effective and knowledgeable as a teacher. Most of the videos are mandatory and you might be given a quiz that you will need to successfully pass based on these videos (more on this later).</h2>
       </PageHeader>
-      <div className="p-5 md:p-10 flex flex-wrap gap-6 justify-evenly items-center">
+      <div className="px-5 py-12 md:px-12 lg:px-16 flex flex-wrap gap-4 gap-y-8 justify-evenly items-center">
             {assignedTrainingVideos && assignedTrainingVideos.map((video, index) => (
-                <div key={index} className="w-full sm:w-[350px] rounded-xl overflow-hidden">
+                <div key={index} className="w-full w-[390px] rounded-xl overflow-hidden">
                   <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg md:text-xl font-medium text-center">{video.title}</h3>
+                      <h3 className="text-xl font-medium text-center">{video.title}</h3>
                       {teacherTrainingVideosData?.[video.shortTitle] ? (<div className="flex text-green-500"><span>watched</span><BsCheckCircleFill size="1.4rem" className="ms-2" /></div>) : (<div className="flex text-red-500"><span>unwatched</span><BsXCircleFill size="1.4rem" className="ms-2" /></div>)}
                   </div>
                   <ReactPlayer
